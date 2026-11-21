@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #050b0a;
+  --color-forest: #071a15;
+  --color-moss: #0b211b;
+  --color-line: rgb(167 184 177 / 0.12);
+  --color-line-strong: rgb(167 184 177 / 0.22);
+  --color-emerald: #10b981;
+  --color-neon: #00f5a0;
+  --color-cyan: #00d9e8;
+  --color-fg: #f8fafc;
+  --color-muted: #a7b8b1;
+  --color-subtle: #6f817a;
+
+  --color-risk-critical: #ff5a5f;
+  --color-risk-high: #ff8a3d;
+  --color-risk-medium: #f5c542;
+  --color-risk-low: #4fb3ff;
+  --color-risk-info: #a7b8b1;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --radius-xl2: 1.25rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+  body {
+    background: var(--color-ink);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-emerald);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-neon);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  /* Glass kartochka: yupqa chegara, yumshoq fon */
+  .glass {
+    background: linear-gradient(180deg, rgb(11 33 27 / 0.72), rgb(7 26 21 / 0.55));
+    border: 1px solid var(--color-line);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .glow-border {
+    position: relative;
+  }
+  .glow-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgb(0 245 160 / 0.55), rgb(16 185 129 / 0.1) 40%, rgb(0 217 232 / 0.35));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .text-gradient {
+    background: linear-gradient(100deg, #f8fafc 10%, #00f5a0 55%, #00d9e8 95%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-grid {
+    background-image: linear-gradient(rgb(167 184 177 / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(167 184 177 / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-emerald);
+  }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-10%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(1000%); opacity: 0; }
+}
+.animate-scan { animation: scan 3.2s cubic-bezier(.4,0,.2,1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+@media print {
+  body { background: #fff; color: #000; }
+  .no-print { display: none !important; }
+  .print-area { color: #000 !important; background: #fff !important; }
+}
