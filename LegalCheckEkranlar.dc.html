@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html,body{margin:0;background:#050B08}*{box-sizing:border-box}a{color:#5FE3A1}a:hover{color:#8FF0BF}</style>
+</helmet>
+<div style="padding:80px;background:#050B08;min-width:max-content;font-family:'Onest',system-ui,sans-serif;color:#EEF3F0;display:flex;flex-direction:column;gap:96px">
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <h1 style="margin:0;font-size:40px;font-weight:800;letter-spacing:-0.02em">LegalCheck AI — UI ekranlari</h1>
+    <div style="display:flex;gap:20px;font-size:16px">
+      <a href="LegalCheckLanding.dc.html">Landing</a>
+      <a href="LegalCheckMiniApp.dc.html">Mini App (ishlaydigan)</a>
+      <a href="LegalCheckKabinet.dc.html">Kabinet (ishlaydigan)</a>
+    </div>
+  </div>
+
+  <section id="A" style="display:flex;flex-direction:column;gap:24px">
+    <span style="font-size:14px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A3B3AB">Telefon · Telegram Mini App · 390×844</span>
+    <div style="display:flex;gap:64px;align-items:flex-start">
+      <div id="A1" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:6px;background:#5FE3A1;color:#04130B;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600">A1</span><span style="font-size:18px;font-weight:700">Bosh sahifa</span></div>
+        <div style="width:390px;height:844px;border-radius:44px;overflow:hidden;border:1px solid #22352C;background:#0A1410">
+          <dc-import name="LegalCheckMiniApp" screen="a1" style="display:block;width:390px;height:844px" hint-size="390px,844px"></dc-import>
+        </div>
+      </div>
+      <div id="A2" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:6px;background:#5FE3A1;color:#04130B;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600">A2</span><span style="font-size:18px;font-weight:700">Savol-javob (meros)</span></div>
+        <div style="width:390px;height:844px;border-radius:44px;overflow:hidden;border:1px solid #22352C;background:#0A1410">
+          <dc-import name="LegalCheckMiniApp" screen="a2" step="2" style="display:block;width:390px;height:844px" hint-size="390px,844px"></dc-import>
+        </div>
+      </div>
+      <div id="A3" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:6px;background:#5FE3A1;color:#04130B;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600">A3</span><span style="font-size:18px;font-weight:700">Natija</span></div>
+        <div style="width:390px;height:844px;border-radius:44px;overflow:hidden;border:1px solid #22352C;background:#0A1410">
+          <dc-import name="LegalCheckMiniApp" screen="a3" style="display:block;width:390px;height:844px" hint-size="390px,844px"></dc-import>
+        </div>
+      </div>
+      <div id="A4" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:6px;background:#5FE3A1;color:#04130B;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600">A4</span><span style="font-size:18px;font-weight:700">Hujjat va ariza tekshiruvi</span></div>
+        <div style="width:390px;height:844px;border-radius:44px;overflow:hidden;border:1px solid #22352C;background:#0A1410">
+          <dc-import name="LegalCheckMiniApp" screen="a4" style="display:block;width:390px;height:844px" hint-size="390px,844px"></dc-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="B" style="display:flex;flex-direction:column;gap:24px">
+    <span style="font-size:14px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A3B3AB">Desktop · 1440 kenglik, fluid</span>
+    <div style="display:flex;gap:64px;align-items:flex-start">
+      <div id="B1" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:6px;background:#5FE3A1;color:#04130B;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600">B1</span><span style="font-size:18px;font-weight:700">Bitim xavfi, yuklash</span></div>
+        <div style="width:1440px;border-radius:14px;overflow:hidden;border:1px solid #22352C;background:#0A1410">
+          <dc-import name="LegalCheckKabinet" screen="b1" style="display:block;width:1440px" hint-size="1440px,960px"></dc-import>
+        </div>
+      </div>
+      <div id="B2" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:6px;background:#5FE3A1;color:#04130B;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600">B2</span><span style="font-size:18px;font-weight:700">Bitim xavfi, natija</span></div>
+        <div style="width:1440px;border-radius:14px;overflow:hidden;border:1px solid #22352C;background:#0A1410">
+          <dc-import name="LegalCheckKabinet" screen="b2" style="display:block;width:1440px" hint-size="1440px,1100px"></dc-import>
+        </div>
+      </div>
+      <div id="B3" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:6px;background:#5FE3A1;color:#04130B;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600">B3</span><span style="font-size:18px;font-weight:700">Notarius kabineti</span></div>
+        <div style="width:1440px;border-radius:14px;overflow:hidden;border:1px solid #22352C;background:#0A1410">
+          <dc-import name="LegalCheckKabinet" screen="b3" style="display:block;width:1440px" hint-size="1440px,1100px"></dc-import>
+        </div>
+      </div>
+      <div id="B4" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:6px;background:#5FE3A1;color:#04130B;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600">B4</span><span style="font-size:18px;font-weight:700">Hujjat va ariza tekshiruvi</span></div>
+        <div style="width:1440px;border-radius:14px;overflow:hidden;border:1px solid #22352C;background:#0A1410">
+          <dc-import name="LegalCheckKabinet" screen="b4" style="display:block;width:1440px" hint-size="1440px,1100px"></dc-import>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html,body{margin:0;background:#0A1410}*{box-sizing:border-box}a{color:#5FE3A1}a:hover{color:#8FF0BF}button,input,textarea{font-family:inherit}@media print{button{display:none!important}}</style>
+</helmet>
+<div style="position:relative;min-height:100dvh;display:flex;flex-direction:column;background:#0A1410;color:#EEF3F0;font-family:'Onest',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
+  <header style="flex:none;display:flex;align-items:center;flex-wrap:wrap;gap:12px 32px;padding:12px 40px;border-bottom:1px solid #22352C;background:#0A1410">
+    <a href="LegalCheckLanding.dc.html" style="display:flex;align-items:center;gap:10px;color:#EEF3F0;text-decoration:none;min-height:44px">
+      <span style="width:32px;height:32px;border-radius:8px;background:#5FE3A1;color:#04130B;display:grid;place-items:center;font-weight:800;font-size:17px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+      <span style="font-weight:800;font-size:18px">LegalCheck AI</span>
+    </a>
+    <nav style="display:flex;gap:4px;flex-wrap:wrap">
+      <button onClick="{{ goRisk }}" style="height:44px;padding:0 16px;border-radius:10px;border:0;background:{{ tabRiskBg }};color:{{ tabRiskColor }};font-size:15px;font-weight:600;cursor:pointer">Bitim xavfi</button>
+      <button onClick="{{ goNotary }}" style="height:44px;padding:0 16px;border-radius:10px;border:0;background:{{ tabNotaryBg }};color:{{ tabNotaryColor }};font-size:15px;font-weight:600;cursor:pointer">Notarius kabineti</button>
+      <button onClick="{{ goCheck }}" style="height:44px;padding:0 16px;border-radius:10px;border:0;background:{{ tabCheckBg }};color:{{ tabCheckColor }};font-size:15px;font-weight:600;cursor:pointer">Hujjat tekshiruvi</button>
+      <a href="LegalCheckMiniApp.dc.html" style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;color:#C4D1CA;font-size:15px;font-weight:600;text-decoration:none" style-hover="background:#101C17;color:#EEF3F0">Tayyorgarlik</a>
+    </nav>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+      <span style="font-size:14px;color:#A3B3AB">Namuna Foydalanuvchi</span>
+      <span style="width:36px;height:36px;border-radius:50%;background:#15241D;border:1px solid #2C4338;display:grid;place-items:center;font-size:13px;font-weight:700">NF</span>
+    </div>
+  </header>
+
+  <sc-if value="{{ isB1 }}" hint-placeholder-val="{{ true }}">
+    <main data-screen-label="B1 Bitim xavfi, yuklash" style="flex:1;width:100%;max-width:1280px;margin:0 auto;padding:40px 40px 56px;display:flex;flex-direction:column;gap:32px">
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:760px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Bitim xavfi</span>
+        <h1 style="margin:0;font-size:40px;line-height:1.1;font-weight:800;letter-spacing:-0.02em">Mulk hujjatlarini yuklang</h1>
+        <p style="margin:0;font-size:17px;line-height:1.55;color:#A3B3AB;text-wrap:pretty">Tizim mulk tarixini tiklaydi va xavfli holatlarni manbasi bilan ko‘rsatadi. Har bir hujjat turi uchun alohida joy ajratilgan.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+        <div style="flex:1 1 640px;min-width:0;display:flex;flex-direction:column;gap:24px">
+          <fieldset style="border:0;margin:0;padding:0;min-width:0">
+            <legend style="padding:0;margin-bottom:10px;font-size:14px;font-weight:600;color:#C4D1CA">Siz kim sifatida tekshiryapsiz?</legend>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-for list="{{ roles }}" as="r" hint-placeholder-count="3">
+                <label style="display:flex;align-items:center;gap:10px;height:44px;padding:0 16px;border-radius:10px;border:1px solid {{ r.border }};background:{{ r.bg }};cursor:pointer;font-size:15px;font-weight:600">
+                  <input type="radio" name="role" checked="{{ r.selected }}" onChange="{{ r.pick }}" style="width:18px;height:18px;margin:0;accent-color:#5FE3A1">{{ r.label }}
+                </label>
+              </sc-for>
+            </div>
+          </fieldset>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">
+            <label onDragOver="{{ sl.kadastr.over }}" onDragLeave="{{ sl.kadastr.leave }}" onDrop="{{ sl.kadastr.drop }}" style="position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:20px;border-radius:14px;border-width:1.5px;border-style:{{ sl.kadastr.borderStyle }};border-color:{{ sl.kadastr.border }};background:{{ sl.kadastr.bg }};cursor:pointer;min-height:184px">
+              <div style="display:flex;align-items:flex-start;gap:12px">
+                <span style="flex:none;width:40px;height:40px;border-radius:10px;background:#15241D;color:#5FE3A1;display:grid;place-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5"></path></svg></span>
+                <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><span style="font-size:16px;font-weight:700">Kadastr ko‘chirmasi</span><span style="font-size:14px;line-height:1.45;color:#A3B3AB">Joriy egasi, maydoni, taqiq va cheklovlar</span></span>
+                <span style="flex:none;height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:#12301F;color:#8FF0BF;font-size:12px;font-weight:700">Majburiy</span>
+              </div>
+              <sc-if value="{{ sl.kadastr.empty }}" hint-placeholder-val="{{ true }}">
+                <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:10px;background:#15241D;border:1px solid #2C4338;font-size:15px;font-weight:600"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 16v4h16v-4"></path></svg>Fayl tanlash</span><span style="font-size:13px;color:#A3B3AB">yoki shu yerga tashlang · PDF, JPG, PNG</span></span>
+              </sc-if>
+              <sc-if value="{{ sl.kadastr.has }}" hint-placeholder-val="{{ false }}">
+                <span style="display:flex;align-items:center;gap:12px;padding:6px 6px 6px 14px;border-radius:10px;background:#12301F"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M5 12l5 5 9-10"></path></svg><span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ sl.kadastr.name }}</span><span style="font-size:13px;color:#A3B3AB">{{ sl.kadastr.size }}</span></span><button onClick="{{ sl.kadastr.clear }}" aria-label="Faylni o‘chirish" style="flex:none;width:44px;height:44px;border-radius:10px;border:0;background:transparent;color:#C4D1CA;display:grid;place-items:center;cursor:pointer" style-hover="background:#0A1410"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></span>
+              </sc-if>
+              <input type="file" accept=".pdf,.jpg,.jpeg,.png" onChange="{{ sl.kadastr.change }}" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;left:0;top:0">
+            </label>
+            <label onDragOver="{{ sl.mulk.over }}" onDragLeave="{{ sl.mulk.leave }}" onDrop="{{ sl.mulk.drop }}" style="position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:20px;border-radius:14px;border-width:1.5px;border-style:{{ sl.mulk.borderStyle }};border-color:{{ sl.mulk.border }};background:{{ sl.mulk.bg }};cursor:pointer;min-height:184px">
+              <div style="display:flex;align-items:flex-start;gap:12px">
+                <span style="flex:none;width:40px;height:40px;border-radius:10px;background:#15241D;color:#5FE3A1;display:grid;place-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"></path><path d="M6 10v10h12V10"></path><path d="M10 20v-5h4v5"></path></svg></span>
+                <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><span style="font-size:16px;font-weight:700">Mulk huquqi hujjati</span><span style="font-size:14px;line-height:1.45;color:#A3B3AB">Oldi-sotdi, hadya shartnomasi yoki guvohnoma</span></span>
+                <span style="flex:none;height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:#15241D;color:#C4D1CA;font-size:12px;font-weight:700">Tavsiya etiladi</span>
+              </div>
+              <sc-if value="{{ sl.mulk.empty }}" hint-placeholder-val="{{ true }}">
+                <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:10px;background:#15241D;border:1px solid #2C4338;font-size:15px;font-weight:600"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 16v4h16v-4"></path></svg>Fayl tanlash</span><span style="font-size:13px;color:#A3B3AB">yoki shu yerga tashlang · PDF, JPG, PNG</span></span>
+              </sc-if>
+              <sc-if value="{{ sl.mulk.has }}" hint-placeholder-val="{{ false }}">
+                <span style="display:flex;align-items:center;gap:12px;padding:6px 6px 6px 14px;border-radius:10px;background:#12301F"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M5 12l5 5 9-10"></path></svg><span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ sl.mulk.name }}</span><span style="font-size:13px;color:#A3B3AB">{{ sl.mulk.size }}</span></span><button onClick="{{ sl.mulk.clear }}" aria-label="Faylni o‘chirish" style="flex:none;width:44px;height:44px;border-radius:10px;border:0;background:transparent;color:#C4D1CA;display:grid;place-items:center;cursor:pointer" style-hover="background:#0A1410"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></span>
+              </sc-if>
+              <input type="file" accept=".pdf,.jpg,.jpeg,.png" onChange="{{ sl.mulk.change }}" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;left:0;top:0">
+            </label>
+            <label onDragOver="{{ sl.meros.over }}" onDragLeave="{{ sl.meros.leave }}" onDrop="{{ sl.meros.drop }}" style="position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:20px;border-radius:14px;border-width:1.5px;border-style:{{ sl.meros.borderStyle }};border-color:{{ sl.meros.border }};background:{{ sl.meros.bg }};cursor:pointer;min-height:184px">
+              <div style="display:flex;align-items:flex-start;gap:12px">
+                <span style="flex:none;width:40px;height:40px;border-radius:10px;background:#15241D;color:#5FE3A1;display:grid;place-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"></path></svg></span>
+                <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><span style="font-size:16px;font-weight:700">Meros guvohnomasi</span><span style="font-size:14px;line-height:1.45;color:#A3B3AB">Mulk meros orqali o‘tgan bo‘lsa</span></span>
+                <span style="flex:none;height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:#15241D;color:#C4D1CA;font-size:12px;font-weight:700">Bo‘lsa</span>
+              </div>
+              <sc-if value="{{ sl.meros.empty }}" hint-placeholder-val="{{ true }}">
+                <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:10px;background:#15241D;border:1px solid #2C4338;font-size:15px;font-weight:600"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 16v4h16v-4"></path></svg>Fayl tanlash</span><span style="font-size:13px;color:#A3B3AB">yoki shu yerga tashlang · PDF, JPG, PNG</span></span>
+              </sc-if>
+              <sc-if value="{{ sl.meros.has }}" hint-placeholder-val="{{ false }}">
+                <span style="display:flex;align-items:center;gap:12px;padding:6px 6px 6px 14px;border-radius:10px;background:#12301F"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M5 12l5 5 9-10"></path></svg><span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ sl.meros.name }}</span><span style="font-size:13px;color:#A3B3AB">{{ sl.meros.size }}</span></span><button onClick="{{ sl.meros.clear }}" aria-label="Faylni o‘chirish" style="flex:none;width:44px;height:44px;border-radius:10px;border:0;background:transparent;color:#C4D1CA;display:grid;place-items:center;cursor:pointer" style-hover="background:#0A1410"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></span>
+              </sc-if>
+              <input type="file" accept=".pdf,.jpg,.jpeg,.png" onChange="{{ sl.meros.change }}" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;left:0;top:0">
+            </label>
+            <label onDragOver="{{ sl.ishonchnoma.over }}" onDragLeave="{{ sl.ishonchnoma.leave }}" onDrop="{{ sl.ishonchnoma.drop }}" style="position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:20px;border-radius:14px;border-width:1.5px;border-style:{{ sl.ishonchnoma.borderStyle }};border-color:{{ sl.ishonchnoma.border }};background:{{ sl.ishonchnoma.bg }};cursor:pointer;min-height:184px">
+              <div style="display:flex;align-items:flex-start;gap:12px">
+                <span style="flex:none;width:40px;height:40px;border-radius:10px;background:#15241D;color:#5FE3A1;display:grid;place-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"></path><path d="M14 4l4 4-9 9H5v-4z"></path></svg></span>
+                <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><span style="font-size:16px;font-weight:700">Ishonchnoma</span><span style="font-size:14px;line-height:1.45;color:#A3B3AB">Sotuvchi vakil orqali harakat qilsa</span></span>
+                <span style="flex:none;height:24px;display:inline-flex;align-items:center;padding:0 8px;border-radius:6px;background:#15241D;color:#C4D1CA;font-size:12px;font-weight:700">Bo‘lsa</span>
+              </div>
+              <sc-if value="{{ sl.ishonchnoma.empty }}" hint-placeholder-val="{{ true }}">
+                <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:10px;background:#15241D;border:1px solid #2C4338;font-size:15px;font-weight:600"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 16v4h16v-4"></path></svg>Fayl tanlash</span><span style="font-size:13px;color:#A3B3AB">yoki shu yerga tashlang · PDF, JPG, PNG</span></span>
+              </sc-if>
+              <sc-if value="{{ sl.ishonchnoma.has }}" hint-placeholder-val="{{ false }}">
+                <span style="display:flex;align-items:center;gap:12px;padding:6px 6px 6px 14px;border-radius:10px;background:#12301F"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M5 12l5 5 9-10"></path></svg><span style="flex:1;min-width:0;display:flex;flex-direction:column"><span style="font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ sl.ishonchnoma.name }}</span><span style="font-size:13px;color:#A3B3AB">{{ sl.ishonchnoma.size }}</span></span><button onClick="{{ sl.ishonchnoma.clear }}" aria-label="Faylni o‘chirish" style="flex:none;width:44px;height:44px;border-radius:10px;border:0;background:transparent;color:#C4D1CA;display:grid;place-items:center;cursor:pointer" style-hover="background:#0A1410"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></span>
+              </sc-if>
+              <input type="file" accept=".pdf,.jpg,.jpeg,.png" onChange="{{ sl.ishonchnoma.change }}" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;left:0;top:0">
+            </label>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+            <button onClick="{{ analyze }}" disabled="{{ cantAnalyze }}" style="height:52px;padding:0 24px;border-radius:12px;border:0;background:{{ analyzeBg }};color:{{ analyzeColor }};font-size:16px;font-weight:700;cursor:pointer">{{ analyzeLabel }}</button>
+            <button onClick="{{ analyzeSample }}" style="height:52px;padding:0 20px;border-radius:12px;border:1px solid #2C4338;background:transparent;color:#EEF3F0;font-size:15px;font-weight:600;cursor:pointer" style-hover="background:#101C17">Namuna hujjatlar bilan ko‘rish</button>
+            <span style="font-size:14px;color:#A3B3AB">{{ uploadHint }}</span>
+          </div>
+        </div>
+        <aside style="flex:1 1 320px;max-width:440px;min-width:0;padding:24px;border-radius:16px;background:#101C17;border:1px solid #22352C;display:flex;flex-direction:column;gap:16px">
+          <h2 style="margin:0;font-size:18px;font-weight:700">Nimalar tekshiriladi</h2>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px">
+            <li style="display:flex;gap:12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M5 12l5 5 9-10"></path></svg><span style="font-size:15px;line-height:1.45">Egalar zanjiri: kim, qachon va qaysi asosda mulkka ega bo‘lgan</span></li>
+            <li style="display:flex;gap:12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M5 12l5 5 9-10"></path></svg><span style="font-size:15px;line-height:1.45">Yaqinda meros yoki hadya orqali o‘tgan mulk</span></li>
+            <li style="display:flex;gap:12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M5 12l5 5 9-10"></path></svg><span style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><span style="font-size:15px;line-height:1.45">Ishonchnomada sotish va pul olish vakolati</span><span style="display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:6px;background:#13221B;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:12px">726-reglament, 4-ilova</span></span></li>
+            <li style="display:flex;gap:12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M5 12l5 5 9-10"></path></svg><span style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><span style="font-size:15px;line-height:1.45">Er-xotin umumiy mulkida turmush o‘rtog‘ining notarial roziligi</span><span style="display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:6px;background:#13221B;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:12px">Yo‘riqnoma 29-band</span></span></li>
+            <li style="display:flex;gap:12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M5 12l5 5 9-10"></path></svg><span style="font-size:15px;line-height:1.45">Egasi bitimda shaxsan qatnasha oladimi</span></li>
+          </ul>
+          <div style="display:flex;gap:12px;padding:14px;border-radius:12px;background:#0F2A1E;border:1px solid #1F4A35">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></svg>
+            <span style="font-size:14px;line-height:1.5;color:#C2F5DB">Fayllar diskka yozilmaydi. Ism, pasport, JSHSHIR, telefon va manzil AI modelga yuborilishidan oldin niqoblanadi.</span>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isB2 }}" hint-placeholder-val="{{ false }}">
+    <main data-screen-label="B2 Bitim xavfi, natija" style="flex:1;width:100%;max-width:1280px;margin:0 auto;padding:40px 40px 32px;display:flex;flex-direction:column;gap:24px">
+      <sc-if value="{{ riskLoading }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0;font-size:16px;color:#A3B3AB">Hujjatlar tahlil qilinmoqda…</p>
+      </sc-if>
+      <sc-if value="{{ hasRisk }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between">
+          <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+            <span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Bitim xavfi · natija</span>
+            <h1 style="margin:0;font-size:36px;line-height:1.1;font-weight:800;letter-spacing:-0.02em">{{ propTitle }}</h1>
+            <div style="display:flex;flex-wrap:wrap;gap:6px 20px;font-size:15px;color:#A3B3AB"><span>{{ propAddress }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:14px">Kadastr: {{ propCadastre }}</span></div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button onClick="{{ newCheck }}" style="height:44px;padding:0 18px;border-radius:10px;border:1px solid #2C4338;background:transparent;color:#EEF3F0;font-size:15px;font-weight:600;cursor:pointer" style-hover="background:#101C17">Yangi tekshiruv</button>
+            <button onClick="{{ printReport }}" style="height:44px;padding:0 18px;border-radius:10px;border:1px solid #2C4338;background:transparent;color:#EEF3F0;font-size:15px;font-weight:600;cursor:pointer" style-hover="background:#101C17">Hisobotni chop etish</button>
+          </div>
+        </div>
+        <sc-if value="{{ hasPrivacy }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 20px;border-radius:14px;background:#0F2A1E;border:1px solid #1F4A35">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></svg>
+            <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+              <span style="font-size:15px;font-weight:700;color:#C2F5DB">{{ privacyTitle }}</span>
+              <span style="font-size:14px;line-height:1.5;color:#A9DCC2">{{ privacyText }}</span>
+            </div>
+          </div>
+        </sc-if>
+        <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+          <section style="flex:1 1 400px;min-width:0;padding:24px;border-radius:16px;background:#101C17;border:1px solid #22352C">
+            <h2 style="margin:0 0 4px;font-size:20px;font-weight:700">Mulk tarixi</h2>
+            <p style="margin:0 0 24px;font-size:14px;line-height:1.5;color:#A3B3AB">Egalar ketma-ketligi yuklangan hujjatlardan tiklandi.</p>
+            <ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+              <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="4">
+                <li style="display:flex;gap:16px">
+                  <div style="flex:none;width:14px;display:flex;flex-direction:column;align-items:center">
+                    <div style="flex:none;width:14px;height:14px;border-radius:50%;margin-top:4px;background:{{ t.dot }};border:3px solid #101C17;outline:1px solid {{ t.dot }}"></div>
+                    <div style="flex:1;width:2px;background:#22352C;visibility:{{ t.lineVis }}"></div>
+                  </div>
+                  <div style="flex:1;min-width:0;padding-bottom:24px;display:flex;flex-direction:column;gap:6px">
+                    <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#A3B3AB">{{ t.date }}</span>
+                    <span style="font-size:16px;font-weight:700">{{ t.owner }}</span>
+                    <span style="font-size:14px;color:#C4D1CA">O‘tish asosi: <span style="color:#EEF3F0;font-weight:600">{{ t.basis }}</span></span>
+                    <span style="display:flex;flex-wrap:wrap;gap:6px;margin-top:2px">
+                      <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:6px;border:1px solid #2C4338;color:#C4D1CA;font-size:12px;font-weight:600"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"></path></svg>{{ t.doc }}</span>
+                      <sc-if value="{{ t.flagged }}" hint-placeholder-val="{{ false }}">
+                        <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;background:{{ t.fBg }};border:1px solid {{ t.fBorder }};color:{{ t.fColor }};font-size:12px;font-weight:700">
+                          <sc-if value="{{ t.isHigh }}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"></path><path d="M12 8v5M12 16h.01"></path></svg></sc-if>
+                          <sc-if value="{{ t.isMid }}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg></sc-if>
+                          <sc-if value="{{ t.isLow }}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg></sc-if>
+                          {{ t.fLabel }}
+                        </span>
+                      </sc-if>
+                      <sc-if value="{{ t.current }}" hint-placeholder-val="{{ false }}">
+                        <span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;background:#EEF3F0;color:#04130B;font-size:12px;font-weight:700">Hozirgi holat</span>
+                      </sc-if>
+                    </span>
+                  </div>
+                </li>
+              </sc-for>
+            </ol>
+          </section>
+          <section style="flex:1.4 1 560px;min-width:0;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+              <h2 style="margin:0;font-size:20px;font-weight:700">{{ flagSummary }}</h2>
+              <div role="group" aria-label="Xavf darajasi bo‘yicha saralash" style="display:flex;gap:6px;flex-wrap:wrap">
+                <sc-for list="{{ filters }}" as="fl" hint-placeholder-count="4">
+                  <button onClick="{{ fl.pick }}" aria-pressed="{{ fl.active }}" style="height:44px;padding:0 14px;border-radius:10px;border:1px solid {{ fl.border }};background:{{ fl.bg }};color:{{ fl.color }};font-size:14px;font-weight:600;cursor:pointer">{{ fl.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <sc-for list="{{ flags }}" as="f" hint-placeholder-count="3">
+              <article style="padding:20px;border-radius:14px;background:#101C17;border:1px solid #22352C;display:flex;flex-direction:column;gap:12px">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+                  <span style="display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:999px;background:{{ f.bg }};border:1px solid {{ f.border }};color:{{ f.color }};font-size:13px;font-weight:700">
+                    <sc-if value="{{ f.isHigh }}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"></path><path d="M12 8v5M12 16h.01"></path></svg></sc-if>
+                    <sc-if value="{{ f.isMid }}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg></sc-if>
+                    <sc-if value="{{ f.isLow }}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg></sc-if>
+                    {{ f.lvLabel }}
+                  </span>
+                  <span style="display:flex;flex-wrap:wrap;gap:6px">
+                    <sc-for list="{{ f.sources }}" as="src" hint-placeholder-count="1"><span style="display:inline-flex;align-items:center;height:26px;padding:0 8px;border-radius:6px;background:#13221B;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:13px;white-space:nowrap">{{ src }}</span></sc-for>
+                  </span>
+                </div>
+                <h3 style="margin:0;font-size:18px;line-height:1.3;font-weight:700">{{ f.title }}</h3>
+                <p style="margin:0;font-size:15px;line-height:1.55;color:#C4D1CA;text-wrap:pretty">{{ f.note }}</p>
+                <div style="padding:14px 16px;border-radius:10px;background:#15241D;display:flex;flex-direction:column;gap:6px">
+                  <span style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Nimani talab qiling</span>
+                  <span style="font-size:15px;line-height:1.5;text-wrap:pretty">{{ f.demand }}</span>
+                </div>
+              </article>
+            </sc-for>
+          </section>
+        </div>
+      </sc-if>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isB3 }}" hint-placeholder-val="{{ false }}">
+    <main data-screen-label="B3 Notarius kabineti" style="flex:1;width:100%;max-width:1280px;margin:0 auto;padding:40px 40px 32px;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:760px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Notarius kabineti</span>
+        <h1 style="margin:0;font-size:36px;line-height:1.1;font-weight:800;letter-spacing:-0.02em">Norma o‘zgarishlari va nostandart holatlar</h1>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+        <section style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <h2 style="margin:0;font-size:20px;font-weight:700">Norma o‘zgarishlari</h2>
+            <p style="margin:0;font-size:14px;color:#A3B3AB">Notarial faoliyatga oid hujjatlardagi so‘nggi tahrirlar</p>
+          </div>
+          <sc-for list="{{ changes }}" as="c" hint-placeholder-count="3">
+            <article style="padding:20px;border-radius:14px;background:#101C17;border:1px solid #22352C;display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+                <span style="display:inline-flex;align-items:center;height:26px;padding:0 8px;border-radius:6px;background:#13221B;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:13px">{{ c.source }}</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#A3B3AB">{{ c.date }}</span>
+              </div>
+              <h3 style="margin:0;font-size:16px;line-height:1.35;font-weight:700">{{ c.doc }}, {{ c.clause }}</h3>
+              <div style="display:flex;flex-direction:column;border-radius:10px;overflow:hidden;border:1px solid #22352C">
+                <div style="display:flex;gap:10px;padding:12px 14px;background:#2A1512;color:#FFC9C0">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="flex:none;margin-top:2px"><path d="M5 12h14"></path></svg>
+                  <span style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase">Eski tahrir</span><span style="font-size:14px;line-height:1.5;text-decoration:line-through;text-decoration-color:#FF9B8A">{{ c.oldText }}</span></span>
+                </div>
+                <div style="display:flex;gap:10px;padding:12px 14px;background:#0F2A1E;color:#C2F5DB;border-top:1px solid #22352C">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="flex:none;margin-top:2px"><path d="M5 12h14M12 5v14"></path></svg>
+                  <span style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase">Yangi tahrir</span><span style="font-size:14px;line-height:1.5">{{ c.newText }}</span></span>
+                </div>
+              </div>
+              <button onClick="{{ c.ask }}" style="align-self:flex-start;height:44px;padding:0 14px;border-radius:10px;border:1px solid #2C4338;background:transparent;color:#EEF3F0;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#15241D">Shu o‘zgarish bo‘yicha so‘rash</button>
+            </article>
+          </sc-for>
+        </section>
+        <section style="flex:1.2 1 520px;min-width:0;display:flex;flex-direction:column;gap:16px">
+          <div style="padding:24px;border-radius:16px;background:#101C17;border:1px solid #22352C;display:flex;flex-direction:column;gap:14px">
+            <h2 style="margin:0;font-size:20px;font-weight:700">Nostandart holat bo‘yicha savol</h2>
+            <p style="margin:0;font-size:14px;line-height:1.5;color:#A3B3AB">Javobdagi har bir da’vo modda yoki band bilan beriladi. Manbada topilmagan amaliyot alohida belgilanadi.</p>
+            <label for="lc-question" style="font-size:14px;font-weight:600;color:#C4D1CA">Savol matni</label>
+            <textarea id="lc-question" ref="{{ qRef }}" value="{{ question }}" onChange="{{ onQuestion }}" onKeyDown="{{ onQKey }}" placeholder="Vaziyatni qisqa yozing" style="min-height:120px;padding:14px;border-radius:12px;border:1px solid #2C4338;background:#0A1410;color:#EEF3F0;font-size:15px;line-height:1.5;resize:vertical;outline:none" style-focus="border-color:#5FE3A1"></textarea>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ suggestions }}" as="sg" hint-placeholder-count="3">
+                <button onClick="{{ sg.pick }}" style="min-height:44px;padding:8px 14px;border-radius:10px;border:1px solid #22352C;background:#15241D;color:#C4D1CA;font-size:14px;line-height:1.35;text-align:left;cursor:pointer" style-hover="border-color:#2F6B4C;color:#EEF3F0">{{ sg.text }}</button>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+              <button onClick="{{ ask }}" disabled="{{ cantAsk }}" style="height:48px;padding:0 22px;border-radius:12px;border:0;background:{{ askBg }};color:{{ askColor }};font-size:15px;font-weight:700;cursor:pointer">{{ askLabel }}</button>
+              <span style="font-size:13px;color:#A3B3AB">Ctrl + Enter</span>
+            </div>
+          </div>
+          <sc-if value="{{ hasAnswer }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:24px;border-radius:16px;background:#101C17;border:1px solid #22352C;display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Javob</span>
+              <p style="margin:4px 0 8px;font-size:15px;line-height:1.5;color:#A3B3AB">{{ answerQuestion }}</p>
+              <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="3">
+                <div style="display:flex;flex-direction:column;gap:10px;padding:16px 0;border-top:1px solid #22352C">
+                  <p style="margin:0;font-size:16px;line-height:1.55;text-wrap:pretty">{{ b.text }}</p>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px">
+                    <sc-for list="{{ b.sources }}" as="src" hint-placeholder-count="1"><span style="display:inline-flex;align-items:center;height:26px;padding:0 8px;border-radius:6px;background:#13221B;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:13px;white-space:nowrap">{{ src }}</span></sc-for>
+                    <sc-if value="{{ b.practice }}" hint-placeholder-val="{{ false }}">
+                      <span style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:6px;border:1px dashed #6B5520;color:#F3C455;font-size:12px;font-weight:600"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>Idora amaliyoti, manbada topilmagan</span>
+                    </sc-if>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+        </section>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isB4 }}" hint-placeholder-val="{{ false }}">
+    <main data-screen-label="B4 Hujjat va ariza tekshiruvi" style="flex:1;width:100%;max-width:1280px;margin:0 auto;padding:40px 40px 32px;display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:780px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Hujjat tekshiruvi</span>
+        <h1 style="margin:0;font-size:36px;line-height:1.1;font-weight:800;letter-spacing:-0.02em">Ariza va hujjatlarni band bo‘yicha tekshirish</h1>
+        <p style="margin:0;font-size:17px;line-height:1.55;color:#A3B3AB;text-wrap:pretty">Fuqaro topshiradigan hujjatlar to‘liqligi va ariza talablari. Bosma matn OCR bilan, qo‘lyozma HTR model bilan o‘qiladi.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+        <section style="flex:1 1 400px;min-width:0;padding:24px;border-radius:16px;background:#101C17;border:1px solid #22352C;display:flex;flex-direction:column;gap:16px">
+          <label style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:14px;font-weight:600;color:#C4D1CA">Vaziyat</span>
+            <select value="{{ ckSituation }}" onChange="{{ onSituation }}" style="height:48px;padding:0 14px;border-radius:10px;border:1px solid #2C4338;background:#0A1410;color:#EEF3F0;font-size:15px;color-scheme:dark">
+              <option value="meros">Meros</option>
+              <option value="uy-joy">Uy-joy oldi-sotdisi</option>
+              <option value="avto">Avtomobil</option>
+              <option value="ishonchnoma">Ishonchnoma</option>
+              <option value="vasiyatnoma">Vasiyatnoma</option>
+            </select>
+          </label>
+          <label style="position:relative;display:flex;align-items:center;justify-content:center;gap:10px;min-height:88px;border-radius:12px;border:1.5px dashed #2C4338;background:#0D1813;font-size:15px;font-weight:600;cursor:pointer" style-hover="border-color:#2F6B4C">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 16v4h16v-4"></path></svg>Ariza va hujjatlarni tanlang · PDF, JPG, PNG
+            <input type="file" multiple="" accept="image/jpeg,image/png,application/pdf" onChange="{{ onCkFiles }}" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;left:0;top:0">
+          </label>
+          <sc-for list="{{ ckFiles }}" as="f" hint-placeholder-count="0">
+            <div style="display:flex;align-items:center;gap:10px;padding:4px 4px 4px 14px;border-radius:10px;background:#15241D">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M7 3h7l5 5v13H7z"></path></svg>
+              <span style="flex:1;min-width:0;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ f.name }}</span>
+              <button onClick="{{ f.remove }}" aria-label="Faylni olib tashlash" style="flex:none;width:44px;height:44px;border-radius:10px;border:0;background:transparent;color:#C4D1CA;display:grid;place-items:center;cursor:pointer" style-hover="background:#0A1410"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+            </div>
+          </sc-for>
+          <label style="display:flex;align-items:center;gap:12px;min-height:44px;cursor:pointer">
+            <input type="checkbox" checked="{{ ckHand }}" onChange="{{ toggleCkHand }}" style="width:20px;height:20px;margin:0;accent-color:#5FE3A1">
+            <span style="font-size:15px;font-weight:600">Ariza qo‘lda yozilgan</span>
+          </label>
+          <sc-if value="{{ ckHand }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:14px;line-height:1.5;color:#C4D1CA">{{ ckHtrNote }}</p></sc-if>
+          <sc-if value="{{ ckNeedConsent }}" hint-placeholder-val="{{ false }}">
+            <label style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:10px;background:#2A2210;border:1px solid #4A3B17;cursor:pointer">
+              <input type="checkbox" checked="{{ ckConsent }}" onChange="{{ toggleCkConsent }}" style="width:20px;height:20px;margin:1px 0 0;accent-color:#F3C455">
+              <span style="font-size:14px;line-height:1.45;color:#FBE7B0">Fuqaro roziligi olingan: qo‘lyozma rasmi tashqi AI modeliga yuboriladi.</span>
+            </label>
+          </sc-if>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button onClick="{{ ckRun }}" disabled="{{ ckCant }}" style="height:48px;padding:0 22px;border-radius:12px;border:0;background:{{ ckBg }};color:{{ ckColor }};font-size:15px;font-weight:700;cursor:pointer">{{ ckLabel }}</button>
+            <button onClick="{{ ckSample }}" style="height:48px;padding:0 18px;border-radius:12px;border:1px solid #2C4338;background:transparent;color:#EEF3F0;font-size:15px;font-weight:600;cursor:pointer" style-hover="background:#15241D">Namuna ariza bilan ko‘rish</button>
+          </div>
+        </section>
+        <section style="flex:1.4 1 560px;min-width:0;display:flex;flex-direction:column;gap:16px">
+          <sc-if value="{{ ckEmpty }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:0;padding:24px;border-radius:16px;border:1px dashed #22352C;font-size:15px;line-height:1.5;color:#A3B3AB">Natija shu yerda chiqadi: har bir talab, holati va asosi.</p>
+          </sc-if>
+          <sc-if value="{{ ckHas }}" hint-placeholder-val="{{ true }}">
+            <h2 style="margin:0;font-size:20px;font-weight:700;line-height:1.35">{{ ckSummary }}</h2>
+            <sc-if value="{{ ckHasPrivacy }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:12px;padding:14px 18px;border-radius:12px;background:#0F2A1E;border:1px solid #1F4A35">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></svg>
+                <span style="font-size:14px;line-height:1.5;color:#C2F5DB">{{ ckPrivacy }}</span>
+              </div>
+            </sc-if>
+            <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start">
+              <div style="flex:1 1 300px;min-width:0;padding:20px 20px 6px;border-radius:16px;background:#101C17;border:1px solid #22352C;display:flex;flex-direction:column">
+                <span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A3B3AB;padding-bottom:8px">Hujjatlar to‘liqligi</span>
+                <sc-for list="{{ ckCompl }}" as="c" hint-placeholder-count="5">
+                  <div style="display:flex;flex-direction:column;gap:6px;padding:14px 0;border-top:1px solid #22352C">
+                    <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:{{ c.bg }};border:1px solid {{ c.border }};color:{{ c.color }};font-size:12px;font-weight:700">
+                      <sc-if value="{{ c.isOk }}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></sc-if>
+                      <sc-if value="{{ c.isFail }}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></sc-if>
+                      <sc-if value="{{ c.isManual }}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></sc-if>
+                      {{ c.label }}
+                    </span>
+                    <span style="font-size:15px;font-weight:600;line-height:1.35">{{ c.title }}</span>
+                    <sc-if value="{{ c.hasMeta }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#A3B3AB;overflow-wrap:anywhere">{{ c.meta }}</span></sc-if>
+                    <span style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ c.sources }}" as="src" hint-placeholder-count="1"><span style="display:inline-flex;align-items:center;height:26px;padding:0 8px;border-radius:6px;background:#13221B;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:13px;white-space:nowrap">{{ src }}</span></sc-for></span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="flex:1.3 1 340px;min-width:0;padding:20px 20px 6px;border-radius:16px;background:#101C17;border:1px solid #22352C;display:flex;flex-direction:column">
+                <span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A3B3AB;padding-bottom:8px">Ariza tekshiruvi</span>
+                <sc-if value="{{ ckHasNotice }}" hint-placeholder-val="{{ false }}"><p style="margin:0 0 14px;font-size:14px;line-height:1.5;color:#C4D1CA">{{ ckNotice }}</p></sc-if>
+                <sc-for list="{{ ckChecks }}" as="c" hint-placeholder-count="6">
+                  <div style="display:flex;flex-direction:column;gap:6px;padding:14px 0;border-top:1px solid #22352C">
+                    <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:{{ c.bg }};border:1px solid {{ c.border }};color:{{ c.color }};font-size:12px;font-weight:700">
+                      <sc-if value="{{ c.isOk }}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></sc-if>
+                      <sc-if value="{{ c.isFail }}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></sc-if>
+                      <sc-if value="{{ c.isWarn }}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg></sc-if>
+                      <sc-if value="{{ c.isManual }}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></sc-if>
+                      {{ c.label }}
+                    </span>
+                    <span style="font-size:15px;font-weight:600;line-height:1.35">{{ c.title }}</span>
+                    <span style="font-size:14px;line-height:1.5;color:#C4D1CA">{{ c.note }}</span>
+                    <span style="display:flex;flex-wrap:wrap;gap:6px">
+                      <sc-for list="{{ c.sources }}" as="src" hint-placeholder-count="1"><span style="display:inline-flex;align-items:center;height:26px;padding:0 8px;border-radius:6px;background:#13221B;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:13px;white-space:nowrap">{{ src }}</span></sc-for>
+                      <sc-if value="{{ c.practice }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:6px;border:1px dashed #6B5520;color:#F3C455;font-size:12px;font-weight:600">Idora amaliyoti, manbada topilmagan</span></sc-if>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </section>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ showDisclaimer }}" hint-placeholder-val="{{ false }}">
+    <div style="position:sticky;bottom:0;z-index:5;border-top:1px solid #22352C;background:#0D1813">
+      <div style="max-width:1280px;margin:0 auto;padding:14px 40px;display:flex;gap:10px;align-items:center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A3B3AB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+        <span style="font-size:14px;line-height:1.45;color:#C4D1CA">Bu sun’iy intellekt tahlili, yuridik maslahat emas. Yakuniy qarorni notarius yoki yurist bilan tekshiring.</span>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000},&quot;screen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;b1&quot;,&quot;b2&quot;,&quot;b3&quot;,&quot;b4&quot;],&quot;default&quot;:&quot;b1&quot;,&quot;tsType&quot;:&quot;'b1'|'b2'|'b3'|'b4'&quot;}}">
+const LV = {
+  high: { label: 'Yuqori xavf', short: 'Yuqori', color: '#FF9B8A', bg: '#331A16', border: '#5A2A22' },
+  mid: { label: 'O‘rta xavf', short: 'O‘rta', color: '#F3C455', bg: '#2E250F', border: '#54431A' },
+  low: { label: 'Past xavf', short: 'Past', color: '#9CC8FF', bg: '#15233A', border: '#27406A' },
+};
+const SLOTS = ['kadastr', 'mulk', 'meros', 'ishonchnoma'];
+const ROLES = ['Xaridor', 'Rieltor', 'Bank'];
+const ST = {
+  ok: { color: '#5FE3A1', bg: '#12301F', border: '#1F4A35' },
+  fail: { color: '#FF9B8A', bg: '#331A16', border: '#5A2A22' },
+  warn: { color: '#F3C455', bg: '#2E250F', border: '#54431A' },
+  manual: { color: '#9CC8FF', bg: '#15233A', border: '#27406A' },
+};
+const decorate = (it, labels) => ({ ...ST[it.status], ...it, sources: it.sources || [], label: labels[it.status] || it.status, isOk: it.status === 'ok', isFail: it.status === 'fail', isWarn: it.status === 'warn', isManual: it.status === 'manual' });
+const PL = { SHAXS: 'ism', PASPORT: 'pasport raqami', JSHSHIR: 'JSHSHIR', TELEFON: 'telefon', EMAIL: 'e-pochta', MANZIL: 'manzil' };
+const HTR_NOTES = {
+  local: 'Qo‘lyozma serverdagi lokal model bilan o‘qiladi — rasm serverdan chiqmaydi.',
+  ai: 'Qo‘lyozma rasmi o‘qish uchun tashqi AI modeliga yuboriladi. Fuqaro roziligi kerak.',
+  ocr: 'Qo‘lyozma modeli ulanmagan: oddiy OCR ishlatiladi, natija noaniq bo‘lishi mumkin.',
+  mock: 'Namuna rejim: fayllar hech qayerga yuborilmaydi.',
+};
+const fmtSize = (b) => (b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB');
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.qRef = React.createRef();
+    this.state = this.initial(props || {});
+  }
+
+  initial(p) {
+    let screen = p.screen || 'b1';
+    try { screen = new URLSearchParams(location.search).get('screen') || screen; } catch (e) {}
+    if (!['b1', 'b2', 'b3', 'b4'].includes(screen)) screen = 'b1';
+    return { ckSituation: 'meros', ckFiles: [], ckHand: screen === 'b4', ckConsent: false, ckRunning: false, check: null, htr: null, screen, role: 'Xaridor', files: {}, drag: null, analyzing: false, risk: null, filter: 'all', changes: [], suggestions: [], question: '', answer: null, asking: false, demoAsk: screen === 'b3', error: '' };
+  }
+
+  api() {
+    if (!this._api) this._api = import(new URL('api.js', document.baseURI).href);
+    return this._api;
+  }
+
+  componentDidMount() { this.boot(); }
+
+  componentDidUpdate(prevProps) {
+    const p = this.props || {};
+    if (prevProps && prevProps.screen !== p.screen) this.setState(this.initial(p), () => this.boot());
+  }
+
+  async boot() {
+    try {
+      const api = await this.api();
+      const [changes, suggestions] = await Promise.all([api.getNormChanges(), api.getSuggestions()]);
+      this.setState({ changes: changes || [], suggestions: suggestions || [] });
+      api.getHealth().then((h) => this.setState({ htr: h.htr || 'mock' })).catch(() => this.setState({ htr: 'mock' }));
+      if (this.state.screen === 'b4' && !this.state.check) this.runCheck(true);
+      if (this.state.screen === 'b2' && !this.state.risk) this.setState({ risk: await api.analyzeRisk({}) });
+      if (this.state.demoAsk && suggestions && suggestions[0]) { this.setState({ demoAsk: false }); this.ask(suggestions[0]); }
+    } catch (e) { this.setState({ error: e.message || 'Xatolik' }); }
+  }
+
+  async runCheck(sample) {
+    const s = this.state;
+    this.setState({ ckRunning: true, error: '' });
+    try {
+      const api = await this.api();
+      const check = await api.checkDocuments(sample ? [] : s.ckFiles, { situation: sample ? 'meros' : s.ckSituation, answers: {}, handwritten: s.ckHand, consent: s.ckConsent });
+      this.setState({ check, ckRunning: false });
+    } catch (e) { this.setState({ ckRunning: false, error: e.message || 'Xatolik' }); }
+  }
+
+  setFile(k, f) { this.setState((s) => ({ files: { ...s.files, [k]: f }, drag: null })); }
+
+  async analyze(sample) {
+    this.setState({ analyzing: true, error: '' });
+    try {
+      const api = await this.api();
+      const risk = await api.analyzeRisk(sample ? {} : this.state.files, { role: this.state.role });
+      this.setState({ risk, analyzing: false, screen: 'b2', filter: 'all' });
+    } catch (e) { this.setState({ analyzing: false, error: e.message || 'Xatolik' }); }
+  }
+
+  async ask(text) {
+    const q = String(text ?? this.state.question).trim();
+    if (!q || this.state.asking) return;
+    this.setState({ asking: true, question: q, error: '' });
+    try {
+      const api = await this.api();
+      const answer = await api.askNotary(q);
+      this.setState({ answer, asking: false });
+    } catch (e) { this.setState({ asking: false, error: e.message || 'Xatolik' }); }
+  }
+
+  slot(k) {
+    const s = this.state, f = s.files[k], drag = s.drag === k;
+    return {
+      has: !!f, empty: !f, name: f ? f.name : '', size: f ? fmtSize(f.size) : '',
+      borderStyle: f ? 'solid' : 'dashed', border: drag ? '#5FE3A1' : f ? '#2F6B4C' : '#2C4338', bg: drag ? '#12301F' : '#101C17',
+      change: (e) => { const x = e.target.files && e.target.files[0]; if (x) this.setFile(k, x); e.target.value = ''; },
+      over: (e) => { e.preventDefault(); if (this.state.drag !== k) this.setState({ drag: k }); },
+      leave: () => this.setState({ drag: null }),
+      drop: (e) => { e.preventDefault(); const x = e.dataTransfer && e.dataTransfer.files[0]; x ? this.setFile(k, x) : this.setState({ drag: null }); },
+      clear: (e) => { e.preventDefault(); e.stopPropagation(); this.setState((st) => { const files = { ...st.files }; delete files[k]; return { files }; }); },
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const sl = {}; SLOTS.forEach((k) => { sl[k] = this.slot(k); });
+    const nFiles = Object.keys(s.files).length;
+    const canAnalyze = !!s.files.kadastr && !s.analyzing;
+    const isRisk = s.screen === 'b1' || s.screen === 'b2';
+
+    const r = s.risk;
+    const lvl = (l) => ({ isHigh: l === 'high', isMid: l === 'mid', isLow: l === 'low' });
+    const all = ((r && r.flags) || []).map((f) => ({ ...f, ...LV[f.level], ...lvl(f.level), lvLabel: LV[f.level].label, sources: f.sources || [] }));
+    const counts = { high: 0, mid: 0, low: 0 }; all.forEach((f) => { counts[f.level]++; });
+    const filters = [['all', `Barchasi · ${all.length}`], ['high', `Yuqori · ${counts.high}`], ['mid', `O‘rta · ${counts.mid}`], ['low', `Past · ${counts.low}`]].map(([k, label]) => {
+      const on = s.filter === k;
+      return { label, active: on, bg: on ? '#EEF3F0' : 'transparent', color: on ? '#04130B' : '#C4D1CA', border: on ? '#EEF3F0' : '#2C4338', pick: () => this.setState({ filter: k }) };
+    });
+    const timeline = ((r && r.timeline) || []).map((t, i, arr) => {
+      const L = t.flag && LV[t.flag];
+      return { ...t, dot: L ? L.color : '#5C7A6B', lineVis: i < arr.length - 1 ? 'visible' : 'hidden', flagged: !!L, current: !!t.current, fColor: L ? L.color : '', fBg: L ? L.bg : '', fBorder: L ? L.border : '', fLabel: L ? L.label : '', ...lvl(t.flag) };
+    });
+    const pv = r && r.privacy;
+    const pvParts = pv ? Object.entries(pv.masked || {}).filter(([, n]) => n > 0).map(([k, n]) => `${n} ta ${PL[k] || k}`) : [];
+    const pvText = pv ? `${pvParts.length ? `AI modelga yuborishdan oldin niqoblandi: ${pvParts.join(', ')}.` : 'Hujjatlarda shaxsiy ma’lumot aniqlanmadi.'} Fayllar diskka yozilmadi.` : '';
+    const ans = s.answer;
+    const hasQ = !!s.question.trim();
+
+    const ck = s.check;
+    const ckCompl = ((ck && ck.completeness) || []).map((c) => ({ ...decorate(c, { ok: 'Bor', fail: 'Yetishmaydi', manual: 'Notarius ko‘radi' }), hasMeta: !!(c.file || c.note), meta: c.file ? `Fayl: ${c.file}` : c.note }));
+    const ckChecks = ((ck && ck.checks) || []).map((c) => decorate(c, { ok: 'Bajarilgan', fail: 'Tuzating', warn: 'Diqqat', manual: 'Notarius ko‘radi' }));
+    const ckAll = [...ckCompl, ...ckChecks];
+    const ckN = (st) => ckAll.filter((x) => x.status === st).length;
+    const ckPv = ck && ck.privacy;
+    const ckPvParts = ckPv ? Object.entries(ckPv.masked || {}).filter(([, n]) => n > 0).map(([k, n]) => `${n} ta ${PL[k] || k}`) : [];
+    const ckNeedConsent = s.ckHand && s.htr === 'ai';
+    const ckCan = s.ckFiles.length > 0 && !s.ckRunning && (!ckNeedConsent || s.ckConsent);
+    const isCheck = s.screen === 'b4';
+
+    return {
+      isB4: isCheck,
+      goCheck: () => this.setState({ screen: 'b4' }),
+      tabCheckBg: isCheck ? '#15241D' : 'transparent', tabCheckColor: isCheck ? '#EEF3F0' : '#C4D1CA',
+      ckSituation: s.ckSituation,
+      onSituation: (e) => this.setState({ ckSituation: e.target.value }),
+      onCkFiles: (e) => { const list = Array.from(e.target.files || []); if (list.length) this.setState((st) => ({ ckFiles: [...st.ckFiles, ...list].slice(0, 10) })); e.target.value = ''; },
+      ckFiles: s.ckFiles.map((f, i) => ({ name: f.name, remove: () => this.setState((st) => ({ ckFiles: st.ckFiles.filter((_, j) => j !== i) })) })),
+      ckHand: !!s.ckHand,
+      toggleCkHand: () => this.setState((st) => ({ ckHand: !st.ckHand, ckConsent: false })),
+      ckHtrNote: HTR_NOTES[s.htr] || 'Qo‘lyozma rejimi tekshirilmoqda…',
+      ckNeedConsent, ckConsent: !!s.ckConsent,
+      toggleCkConsent: () => this.setState((st) => ({ ckConsent: !st.ckConsent })),
+      ckRun: () => this.runCheck(false), ckSample: () => this.runCheck(true),
+      ckCant: !ckCan, ckBg: ckCan ? '#5FE3A1' : '#1A2A23', ckColor: ckCan ? '#04130B' : '#8A9B93',
+      ckLabel: s.ckRunning ? 'Tekshirilmoqda…' : 'Tekshirish',
+      ckEmpty: !ck, ckHas: !!ck,
+      ckSummary: ck ? `${ckN('ok')} ta talab bajarilgan, ${ckN('fail')} tasini tuzatish kerak, ${ckN('manual')} tasini notarius ko‘radi${ckN('warn') ? `, ${ckN('warn')} ta diqqat` : ''}${ck.sample ? ' · namuna ariza' : ''}` : '',
+      ckCompl, ckChecks,
+      ckHasNotice: !!(ck && ck.notice), ckNotice: (ck && ck.notice) || '',
+      ckHasPrivacy: !!ckPv,
+      ckPrivacy: ckPv ? `${ckPvParts.length ? `Aniqlangan shaxsiy ma’lumot: ${ckPvParts.join(', ')}.` : 'Shaxsiy ma’lumot aniqlanmadi.'} ${ckPv.sentToAI ? 'Qo‘lyozma rasmi rozilik bilan AI modeliga yuborildi.' : 'Hech narsa tashqi xizmatga yuborilmadi.'} Fayllar diskka yozilmadi.` : '',
+      isB1: s.screen === 'b1', isB2: s.screen === 'b2', isB3: s.screen === 'b3',
+      showDisclaimer: s.screen !== 'b1',
+      goRisk: () => this.setState({ screen: s.risk && s.screen === 'b1' ? 'b2' : 'b1' }),
+      goNotary: () => this.setState({ screen: 'b3' }),
+      tabRiskBg: isRisk ? '#15241D' : 'transparent', tabRiskColor: isRisk ? '#EEF3F0' : '#C4D1CA',
+      tabNotaryBg: s.screen === 'b3' ? '#15241D' : 'transparent', tabNotaryColor: s.screen === 'b3' ? '#EEF3F0' : '#C4D1CA',
+      roles: ROLES.map((label) => ({ label, selected: s.role === label, border: s.role === label ? '#5FE3A1' : '#2C4338', bg: s.role === label ? '#12301F' : 'transparent', pick: () => this.setState({ role: label }) })),
+      sl,
+      analyze: () => this.analyze(false),
+      analyzeSample: () => this.analyze(true),
+      cantAnalyze: !canAnalyze,
+      analyzeBg: canAnalyze ? '#5FE3A1' : '#1A2A23', analyzeColor: canAnalyze ? '#04130B' : '#8A9B93',
+      analyzeLabel: s.analyzing ? 'Tahlil qilinmoqda…' : 'Tahlilni boshlash',
+      uploadHint: s.error ? s.error : (s.files.kadastr ? `${nFiles} ta hujjat tayyor` : 'Boshlash uchun kadastr ko‘chirmasini yuklang'),
+      riskLoading: !r, hasRisk: !!r,
+      hasPrivacy: !!pv,
+      privacyTitle: pv && pv.sentToAI ? 'Shaxsiy ma’lumotlar AI modelga ochiq holda yuborilmadi' : 'Namuna tahlil: hujjatlar hech qayerga yuborilmadi',
+      privacyText: pvText,
+      propTitle: (r && r.property && r.property.title) || '',
+      propAddress: (r && r.property && r.property.address) || '',
+      propCadastre: (r && r.property && r.property.cadastre) || '',
+      newCheck: () => this.setState({ screen: 'b1', files: {}, risk: null }),
+      printReport: () => window.print(),
+      timeline,
+      flagSummary: all.length ? `${all.length} ta qizil bayroq` : 'Qizil bayroq topilmadi',
+      filters,
+      flags: s.filter === 'all' ? all : all.filter((f) => f.level === s.filter),
+      changes: s.changes.map((c) => ({
+        ...c, source: c.source || c.clause,
+        ask: () => { this.setState({ question: `${c.doc}, ${c.clause}: o‘zgarish amaliyotda nimani anglatadi?` }); if (this.qRef.current) this.qRef.current.focus({ preventScroll: true }); },
+      })),
+      qRef: this.qRef,
+      question: s.question,
+      onQuestion: (e) => this.setState({ question: e.target.value }),
+      onQKey: (e) => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); this.ask(); } },
+      suggestions: s.suggestions.map((text) => ({ text, pick: () => this.ask(text) })),
+      ask: () => this.ask(),
+      cantAsk: !hasQ || s.asking,
+      askBg: hasQ && !s.asking ? '#5FE3A1' : '#1A2A23', askColor: hasQ && !s.asking ? '#04130B' : '#8A9B93',
+      askLabel: s.asking ? 'Javob tayyorlanmoqda…' : 'Javob olish',
+      hasAnswer: !!ans,
+      answerQuestion: ans ? `Savol: ${ans.question}` : '',
+      blocks: ((ans && ans.blocks) || []).map((b) => ({ ...b, sources: b.sources || [], practice: !!b.practice })),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>html{scroll-behavior:smooth}html,body{margin:0;background:#0A1410}*{box-sizing:border-box}a{color:#5FE3A1}a:hover{color:#8FF0BF}::selection{background:#5FE3A1;color:#04130B}</style>
+</helmet>
+<div ref="{{ rootRef }}" style="background:#0A1410;color:#EEF3F0;font-family:'Onest',system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased">
+
+  <header style="position:sticky;top:0;z-index:20;background:#0A1410;border-bottom:1px solid #1A2A23">
+    <div style="max-width:1280px;margin:0 auto;padding:12px 32px;min-height:72px;display:flex;align-items:center;flex-wrap:wrap;gap:12px 32px">
+      <a href="#top" style="display:flex;align-items:center;gap:10px;color:#EEF3F0;text-decoration:none;min-height:44px">
+        <span style="width:32px;height:32px;border-radius:8px;background:#5FE3A1;color:#04130B;display:grid;place-items:center;font-weight:800;font-size:17px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+        <span style="font-weight:800;font-size:19px;letter-spacing:-0.01em">LegalCheck AI</span>
+      </a>
+      <nav style="display:flex;gap:4px;flex-wrap:wrap">
+        <a href="#modullar" style="display:inline-flex;align-items:center;height:44px;padding:0 14px;border-radius:10px;color:#C4D1CA;font-size:15px;font-weight:500;text-decoration:none" style-hover="color:#EEF3F0;background:#101C17">Modullar</a>
+        <a href="#tizim" style="display:inline-flex;align-items:center;height:44px;padding:0 14px;border-radius:10px;color:#C4D1CA;font-size:15px;font-weight:500;text-decoration:none" style-hover="color:#EEF3F0;background:#101C17">Tizim qanday ishlaydi</a>
+        <a href="#maxfiylik" style="display:inline-flex;align-items:center;height:44px;padding:0 14px;border-radius:10px;color:#C4D1CA;font-size:15px;font-weight:500;text-decoration:none" style-hover="color:#EEF3F0;background:#101C17">Maxfiylik</a>
+        <a href="#notarius" style="display:inline-flex;align-items:center;height:44px;padding:0 14px;border-radius:10px;color:#C4D1CA;font-size:15px;font-weight:500;text-decoration:none" style-hover="color:#EEF3F0;background:#101C17">Notariuslar uchun</a>
+      </nav>
+      <div style="margin-left:auto;display:flex;gap:10px;flex-wrap:wrap">
+        <a href="LegalCheckKabinet.dc.html" style="display:inline-flex;align-items:center;height:44px;padding:0 18px;border-radius:10px;border:1px solid #2C4338;color:#EEF3F0;font-size:15px;font-weight:600;text-decoration:none" style-hover="background:#101C17;color:#EEF3F0">Kabinetga kirish</a>
+        <a href="LegalCheckMiniApp.dc.html" style="display:inline-flex;align-items:center;height:44px;padding:0 18px;border-radius:10px;background:#5FE3A1;color:#04130B;font-size:15px;font-weight:700;text-decoration:none" style-hover="background:#7FEBB5;color:#04130B">Telegramda ochish</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="top" data-screen-label="Hero" style="max-width:1280px;margin:0 auto;padding:clamp(48px,8vw,104px) 32px 80px;display:flex;flex-wrap:wrap;gap:56px;align-items:center">
+    <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:28px">
+      <span data-hero="0" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 12px;border-radius:999px;border:1px solid #2C4338;font-size:13px;font-weight:600;color:#C4D1CA">
+        <span style="width:6px;height:6px;border-radius:50%;background:#5FE3A1"></span>Notarial bitimlarga tayyorgarlik va xavf tahlili
+      </span>
+      <h1 style="margin:0;font-size:clamp(44px,6vw,84px);line-height:1;font-weight:800;letter-spacing:-0.04em">
+        <span style="display:block;overflow:hidden;padding-bottom:0.08em"><span data-hero="1" style="display:block">Notariusga</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:0.08em"><span data-hero="2" style="display:block">tayyor boring.</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:0.08em"><span data-hero="3" style="display:block;color:#5FE3A1">Xavfni oldindan</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:0.08em"><span data-hero="4" style="display:block;color:#5FE3A1">ko‘ring.</span></span>
+      </h1>
+      <p data-hero="5" style="margin:0;max-width:560px;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:#A3B3AB;text-wrap:pretty">LegalCheck AI vaziyatingizni savol-javob orqali aniqlaydi, shaxsiy hujjatlar ro‘yxatini tuzadi va mulk tarixidagi qizil bayroqlarni qonun moddasi bilan ko‘rsatadi.</p>
+      <div data-hero="6" style="display:flex;flex-wrap:wrap;gap:12px">
+        <a href="LegalCheckMiniApp.dc.html" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 24px;border-radius:14px;background:#5FE3A1;color:#04130B;font-size:16px;font-weight:700;text-decoration:none" style-hover="background:#7FEBB5;color:#04130B">Notariusga tayyorlanish<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="LegalCheckKabinet.dc.html" style="display:inline-flex;align-items:center;height:56px;padding:0 24px;border-radius:14px;border:1px solid #2C4338;color:#EEF3F0;font-size:16px;font-weight:600;text-decoration:none" style-hover="background:#101C17;color:#EEF3F0">Bitim xavfini tekshirish</a>
+      </div>
+    </div>
+
+    <div data-hero="7" style="flex:1 1 440px;min-width:0;max-width:560px">
+      <div style="border-radius:20px;background:#101C17;border:1px solid #22352C;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid #22352C">
+          <span style="font-size:14px;font-weight:700">Bitim xavfi · namuna tahlil</span>
+          <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:#C4D1CA"><span style="width:8px;height:8px;border-radius:50%;background:{{ p.dot }};transition:background .4s"></span>{{ p.status }}</span>
+        </div>
+        <div style="padding:20px;display:flex;flex-direction:column;gap:18px">
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;border-radius:8px;background:#15241D;font-family:'IBM Plex Mono',monospace;font-size:13px;opacity:{{ p.file1.o }};transform:{{ p.file1.t }};transition:opacity .5s,transform .5s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"></path></svg>kadastr_namuna.pdf</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;border-radius:8px;background:#15241D;font-family:'IBM Plex Mono',monospace;font-size:13px;opacity:{{ p.file2.o }};transform:{{ p.file2.t }};transition:opacity .5s,transform .5s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"></path></svg>ishonchnoma_namuna.pdf</span>
+          </div>
+          <div style="height:4px;border-radius:2px;background:#22352C;overflow:hidden"><div style="height:100%;width:{{ p.bar }};background:#5FE3A1;transition:width 1.1s cubic-bezier(.4,0,.2,1)"></div></div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <span style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A3B3AB;margin-bottom:6px">Mulk tarixi</span>
+            <div style="display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 0;border-top:1px solid #1A2A23;font-size:14px;opacity:{{ p.tl1.o }};transform:{{ p.tl1.t }};transition:opacity .5s,transform .5s"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#A3B3AB">12.03.2009</span><span style="font-weight:600">Namuna Egasi-1</span><span style="color:#C4D1CA">Oldi-sotdi</span></div>
+            <div style="display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 0;border-top:1px solid #1A2A23;font-size:14px;opacity:{{ p.tl2.o }};transform:{{ p.tl2.t }};transition:opacity .5s .15s,transform .5s .15s"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#A3B3AB">05.07.2018</span><span style="font-weight:600">Namuna Egasi-2</span><span style="color:#C4D1CA">Hadya</span></div>
+            <div style="display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 0;border-top:1px solid #1A2A23;font-size:14px;opacity:{{ p.tl3.o }};transform:{{ p.tl3.t }};transition:opacity .5s,transform .5s"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#A3B3AB">20.03.2026</span><span style="font-weight:600">Namuna Egasi-3</span><span style="color:#C4D1CA">Meros</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-radius:12px;border:1px solid #22352C;background:#0D1813;opacity:{{ p.f1.o }};transform:{{ p.f1.t }};transition:opacity .5s,transform .5s">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+                <span style="display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:#331A16;border:1px solid #5A2A22;color:#FF9B8A;font-size:12px;font-weight:700"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"></path><path d="M12 8v5M12 16h.01"></path></svg>Yuqori xavf</span>
+                <span style="display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:6px;background:#13221B;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:12px">Qonun 50-m.</span>
+              </div>
+              <span style="font-size:15px;font-weight:600">Mulk 8 oy oldin meros orqali o‘tgan</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-radius:12px;border:1px solid #22352C;background:#0D1813;opacity:{{ p.f2.o }};transform:{{ p.f2.t }};transition:opacity .5s,transform .5s">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+                <span style="display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:#2E250F;border:1px solid #54431A;color:#F3C455;font-size:12px;font-weight:700"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>O‘rta xavf</span>
+                <span style="display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:6px;background:#13221B;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:12px">726-reglament, 4-ilova</span>
+              </div>
+              <span style="font-size:15px;font-weight:600">Sotuvchi ishonchnoma orqali harakat qilmoqda</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-radius:12px;border:1px solid #22352C;background:#0D1813;opacity:{{ p.f3.o }};transform:{{ p.f3.t }};transition:opacity .5s,transform .5s">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+                <span style="display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:#15233A;border:1px solid #27406A;color:#9CC8FF;font-size:12px;font-weight:700"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>Past xavf</span>
+                <span style="display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:6px;background:#13221B;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:12px">Yo‘riqnoma 29-band</span>
+              </div>
+              <span style="font-size:15px;font-weight:600">Turmush o‘rtog‘i roziligi kerak bo‘lishi mumkin</span>
+            </div>
+          </div>
+        </div>
+        <div style="padding:12px 20px;border-top:1px solid #22352C;font-size:13px;line-height:1.45;color:#A3B3AB">Namuna ma’lumotlar. Bu sun’iy intellekt tahlili, yuridik maslahat emas.</div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Manbalar" style="border-top:1px solid #1A2A23;border-bottom:1px solid #1A2A23;padding:24px 0;overflow:hidden">
+    <div style="max-width:1280px;margin:0 auto 16px;padding:0 32px;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#A3B3AB">Har bir da’vo manbaga tayanadi</div>
+    <div ref="{{ marqueeRef }}" style="display:flex;width:max-content">
+      <div style="display:flex;gap:12px;padding-right:12px">
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Qonun 50-m.</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">726-reglament, 5-ilova</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Yo‘riqnoma 29-band</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Qonun 16-m.</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Yo‘riqnoma 8-band</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">FK 1147-m.</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Qonun 31-m.</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Yo‘riqnoma 90-band</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">726-reglament, 4-ilova</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Qonun 38–39-m.</span>
+      </div>
+      <div aria-hidden="true" style="display:flex;gap:12px;padding-right:12px">
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Qonun 50-m.</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">726-reglament, 5-ilova</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Yo‘riqnoma 29-band</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Qonun 16-m.</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Yo‘riqnoma 8-band</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">FK 1147-m.</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Qonun 31-m.</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Yo‘riqnoma 90-band</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">726-reglament, 4-ilova</span>
+        <span style="display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:10px;background:#101C17;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:15px;white-space:nowrap">Qonun 38–39-m.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="tizim" ref="{{ tizimRef }}" data-screen-label="Tizim qanday ishlaydi" style="max-width:1280px;margin:0 auto;padding:120px 32px 40px;display:flex;flex-direction:column;gap:40px">
+    <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-end">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:780px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Tizim qanday ishlaydi</span>
+        <h2 style="margin:0;font-size:clamp(34px,3.8vw,56px);line-height:1.05;font-weight:800;letter-spacing:-0.035em;text-wrap:balance">Hujjatdan xulosagacha. Shaxsiy ma’lumot serverdan chiqmaydi.</h2>
+      </div>
+      <p style="margin:0;max-width:420px;font-size:17px;line-height:1.55;color:#A3B3AB;text-wrap:pretty">Namuna kadastr ko‘chirmasi misolida: OCR matnni o‘qiydi, shaxsiy ma’lumot tokenga almashtiriladi, AI faqat niqoblangan matnni tahlil qiladi.</p>
+    </div>
+    <div data-reveal="" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,160px) minmax(160px,220px);align-items:stretch">
+      <div style="min-width:0;position:relative;padding:52px 14px 14px;border-radius:20px;border:1.5px dashed #2F6B4C;background:#0C1712;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+        <span style="position:absolute;top:16px;left:20px;right:20px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#8FF0BF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></svg>LegalCheck AI serveri · fayl xotirada, diskka yozilmaydi</span>
+        <div style="min-width:0;display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:14px;border:1.5px solid {{ pipe.n0.b }};background:{{ pipe.n0.bg }};transition:border-color .4s,background .4s">
+          <span style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:{{ pipe.n0.c }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5"></path></svg>Hujjat</span>
+          <span style="font-size:13px;line-height:1.4;color:#A3B3AB">JPG, PNG yoki PDF</span>
+        </div>
+        <div style="min-width:0;display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:14px;border:1.5px solid {{ pipe.n1.b }};background:{{ pipe.n1.bg }};transition:border-color .4s,background .4s">
+          <span style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:{{ pipe.n1.c }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3"></path><path d="M8 12h8"></path></svg>OCR</span>
+          <span style="font-size:13px;line-height:1.4;color:#A3B3AB">Matnni tanib olish</span>
+        </div>
+        <div style="min-width:0;display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:14px;border:1.5px solid {{ pipe.n2.b }};background:{{ pipe.n2.bg }};transition:border-color .4s,background .4s">
+          <span style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:{{ pipe.n2.c }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M7 12h10"></path></svg>PII niqoblash</span>
+          <span style="font-size:13px;line-height:1.4;color:#A3B3AB">Ism, pasport, JSHSHIR → token</span>
+        </div>
+        <div style="grid-column:1 / span 2;min-width:0;display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:14px;border:1.5px solid {{ pipe.n5.b }};background:{{ pipe.n5.bg }};transition:border-color .4s,background .4s">
+          <span style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:{{ pipe.n5.c }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg>Natija</span>
+          <span style="font-size:13px;line-height:1.4;color:#A3B3AB">Qizil bayroqlar manba bilan, faqat sizning ekraningizda</span>
+        </div>
+        <div style="min-width:0;display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:14px;border:1.5px solid {{ pipe.n4.b }};background:{{ pipe.n4.bg }};transition:border-color .4s,background .4s">
+          <span style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:{{ pipe.n4.c }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 108-8"></path><path d="M4 4v5h5"></path></svg>Tiklash</span>
+          <span style="font-size:13px;line-height:1.4;color:#A3B3AB">Token → asl qiymat</span>
+        </div>
+      </div>
+      <div style="min-width:0;display:flex;flex-direction:column;justify-content:space-around;gap:24px;padding:24px 10px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;line-height:1.35;color:{{ pipe.outC }};transition:color .3s">niqoblangan matn →</span>
+          <div style="position:relative;height:2px;background:#22352C"><div style="position:absolute;top:-5px;left:{{ pipe.outL }};width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#5FE3A1;opacity:{{ pipe.outO }};transition:{{ pipe.outTr }}"></div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="position:relative;height:2px;background:#22352C"><div style="position:absolute;top:-5px;left:{{ pipe.retL }};width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#5FE3A1;opacity:{{ pipe.retO }};transition:{{ pipe.retTr }}"></div></div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:{{ pipe.retC }};transition:color .3s">← javob (tokenlar bilan)</span>
+        </div>
+      </div>
+      <div style="min-width:0;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:16px;border-radius:20px;border:1.5px solid {{ pipe.n3.b }};background:{{ pipe.n3.bg }};transition:border-color .4s,background .4s">
+        <span style="display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700;color:{{ pipe.n3.c }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"></rect><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"></path></svg>AI model</span>
+        <span style="font-size:13px;line-height:1.45;color:#A3B3AB">Tashqi xizmat. Asl fayl, ism, pasport va JSHSHIRni ko‘rmaydi — faqat tokenlar.</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+      <div style="flex:1 1 540px;min-width:0;display:flex;flex-direction:column;gap:20px">
+        <div style="position:relative;overflow:hidden;padding:28px;border-radius:6px;background:#EEF2EE;color:#13201A;transform:rotate(-0.5deg)">
+          <div style="position:absolute;left:0;right:0;top:{{ pipe.scanTop }};height:64px;margin-top:-64px;background:#1F9E6322;border-bottom:2px solid #1F9E63;opacity:{{ pipe.scanO }};transition:{{ pipe.scanTr }};pointer-events:none"></div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding-bottom:14px;margin-bottom:16px;border-bottom:1.5px solid #13201A">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#4A5A52">Davlat kadastri</span>
+              <span style="font-size:21px;font-weight:800">Kadastr ko‘chirmasi</span>
+            </div>
+            <span style="flex:none;padding:4px 10px;border:2px solid #B3261E;color:#B3261E;font-size:12px;font-weight:800;letter-spacing:0.12em;transform:rotate(4deg)">NAMUNA</span>
+          </div>
+          <div style="display:grid;grid-template-columns:minmax(110px,160px) minmax(0,1fr);gap:10px 16px;align-items:center;font-size:14px">
+            <span style="color:#4A5A52">Mulk egasi</span>
+            <span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0">
+              <span style="display:grid;padding:3px 7px;border-radius:4px;background:{{ pipe.piiBg }};box-shadow:{{ pipe.ocr }};transition:background .4s,box-shadow .3s 0s"><span style="grid-area:1 / 1;font-weight:600;opacity:{{ pipe.valO }};transition:opacity .4s">Namunova Misol Namunovna</span><span style="grid-area:1 / 1;font-family:'IBM Plex Mono',monospace;font-weight:600;color:#0B5E3A;opacity:{{ pipe.tokO }};transition:opacity .4s">[SHAXS_1]</span></span>
+              <span style="display:grid"><span style="grid-area:1 / 1;padding:2px 6px;border-radius:4px;background:#7A4F00;color:#FFF6DF;font-size:11px;font-weight:700;opacity:{{ pipe.tagO }};transition:opacity .3s">SHAXS</span><span style="grid-area:1 / 1;padding:2px 6px;border-radius:4px;background:#0B5E3A;color:#E6FFF2;font-size:11px;font-weight:700;opacity:{{ pipe.restO }};transition:opacity .3s">tiklandi</span></span>
+            </span>
+            <span style="color:#4A5A52">Pasport</span>
+            <span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0">
+              <span style="display:grid;padding:3px 7px;border-radius:4px;background:{{ pipe.piiBg }};box-shadow:{{ pipe.ocr }};transition:background .4s,box-shadow .3s .25s"><span style="grid-area:1 / 1;font-family:'IBM Plex Mono',monospace;opacity:{{ pipe.valO }};transition:opacity .4s">AA0000000</span><span style="grid-area:1 / 1;font-family:'IBM Plex Mono',monospace;font-weight:600;color:#0B5E3A;opacity:{{ pipe.tokO }};transition:opacity .4s">[PASPORT_1]</span></span>
+              <span style="display:grid"><span style="grid-area:1 / 1;padding:2px 6px;border-radius:4px;background:#7A4F00;color:#FFF6DF;font-size:11px;font-weight:700;opacity:{{ pipe.tagO }};transition:opacity .3s">PASPORT</span><span style="grid-area:1 / 1;padding:2px 6px;border-radius:4px;background:#0B5E3A;color:#E6FFF2;font-size:11px;font-weight:700;opacity:{{ pipe.restO }};transition:opacity .3s">tiklandi</span></span>
+            </span>
+            <span style="color:#4A5A52">JSHSHIR</span>
+            <span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0">
+              <span style="display:grid;padding:3px 7px;border-radius:4px;background:{{ pipe.piiBg }};box-shadow:{{ pipe.ocr }};transition:background .4s,box-shadow .3s .5s"><span style="grid-area:1 / 1;font-family:'IBM Plex Mono',monospace;opacity:{{ pipe.valO }};transition:opacity .4s">00000000000000</span><span style="grid-area:1 / 1;font-family:'IBM Plex Mono',monospace;font-weight:600;color:#0B5E3A;opacity:{{ pipe.tokO }};transition:opacity .4s">[JSHSHIR_1]</span></span>
+              <span style="display:grid"><span style="grid-area:1 / 1;padding:2px 6px;border-radius:4px;background:#7A4F00;color:#FFF6DF;font-size:11px;font-weight:700;opacity:{{ pipe.tagO }};transition:opacity .3s">JSHSHIR</span><span style="grid-area:1 / 1;padding:2px 6px;border-radius:4px;background:#0B5E3A;color:#E6FFF2;font-size:11px;font-weight:700;opacity:{{ pipe.restO }};transition:opacity .3s">tiklandi</span></span>
+            </span>
+            <span style="color:#4A5A52">Telefon</span>
+            <span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0">
+              <span style="display:grid;padding:3px 7px;border-radius:4px;background:{{ pipe.piiBg }};box-shadow:{{ pipe.ocr }};transition:background .4s,box-shadow .3s .75s"><span style="grid-area:1 / 1;font-family:'IBM Plex Mono',monospace;opacity:{{ pipe.valO }};transition:opacity .4s">+998 00 000 00 00</span><span style="grid-area:1 / 1;font-family:'IBM Plex Mono',monospace;font-weight:600;color:#0B5E3A;opacity:{{ pipe.tokO }};transition:opacity .4s">[TELEFON_1]</span></span>
+              <span style="display:grid"><span style="grid-area:1 / 1;padding:2px 6px;border-radius:4px;background:#7A4F00;color:#FFF6DF;font-size:11px;font-weight:700;opacity:{{ pipe.tagO }};transition:opacity .3s">TELEFON</span><span style="grid-area:1 / 1;padding:2px 6px;border-radius:4px;background:#0B5E3A;color:#E6FFF2;font-size:11px;font-weight:700;opacity:{{ pipe.restO }};transition:opacity .3s">tiklandi</span></span>
+            </span>
+            <span style="color:#4A5A52">Kadastr raqami</span>
+            <span style="justify-self:start;padding:3px 7px;border-radius:4px;font-family:'IBM Plex Mono',monospace;box-shadow:{{ pipe.ocr }};transition:box-shadow .3s 1s">00:00:00:00:00:0000</span>
+            <span style="color:#4A5A52">O‘tish asosi</span>
+            <span style="justify-self:start;padding:3px 7px;border-radius:4px;font-weight:600;box-shadow:{{ pipe.ocr }};transition:box-shadow .3s 1.25s">Meros guvohnomasi</span>
+            <span style="color:#4A5A52">Ro‘yxatga olingan</span>
+            <span style="justify-self:start;padding:3px 7px;border-radius:4px;font-family:'IBM Plex Mono',monospace;box-shadow:{{ pipe.ocr }};transition:box-shadow .3s 1.5s">20.03.2026</span>
+            <span style="color:#4A5A52">Cheklovlar</span>
+            <span style="justify-self:start;padding:3px 7px;border-radius:4px;box-shadow:{{ pipe.ocr }};transition:box-shadow .3s 1.75s">Taqiq qayd etilmagan</span>
+          </div>
+        </div>
+        <div aria-live="polite" style="display:grid;padding:20px;border-radius:16px;background:#101C17;border:1px solid #22352C">
+          <div style="grid-area:1 / 1;display:flex;flex-direction:column;gap:10px;opacity:{{ pipe.o0 }};transition:opacity .4s">
+            <span style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Fayl qabul qilindi</span>
+            <span style="align-self:flex-start;display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:8px;background:#15241D;font-family:'IBM Plex Mono',monospace;font-size:13px">kadastr_namuna.jpg</span>
+            <span style="font-size:14px;line-height:1.5;color:#C4D1CA">Fayl server xotirasida ochiladi. Diskka yozilmaydi va javob berilgach o‘chadi.</span>
+          </div>
+          <div style="grid-area:1 / 1;display:flex;flex-direction:column;gap:10px;opacity:{{ pipe.o1 }};transition:opacity .4s">
+            <span style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">OCR natijasi · xom matn</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;color:#C4D1CA;white-space:pre-wrap">Mulk egasi: Namunova Misol Namunovna
+Pasport: AA0000000  JSHSHIR: 00000000000000
+Kadastr raqami: 00:00:00:00:00:0000
+O‘tish asosi: Meros guvohnomasi, 20.03.2026</span>
+          </div>
+          <div style="grid-area:1 / 1;display:flex;flex-direction:column;gap:12px;opacity:{{ pipe.o2 }};transition:opacity .4s">
+            <span style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#F3C455">Aniqlangan shaxsiy ma’lumot</span>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <span style="display:inline-flex;align-items:center;height:30px;padding:0 12px;border-radius:999px;background:#2E250F;border:1px solid #54431A;color:#F3C455;font-size:13px;font-weight:600">1 ta ism</span>
+              <span style="display:inline-flex;align-items:center;height:30px;padding:0 12px;border-radius:999px;background:#2E250F;border:1px solid #54431A;color:#F3C455;font-size:13px;font-weight:600">1 ta pasport raqami</span>
+              <span style="display:inline-flex;align-items:center;height:30px;padding:0 12px;border-radius:999px;background:#2E250F;border:1px solid #54431A;color:#F3C455;font-size:13px;font-weight:600">1 ta JSHSHIR</span>
+              <span style="display:inline-flex;align-items:center;height:30px;padding:0 12px;border-radius:999px;background:#2E250F;border:1px solid #54431A;color:#F3C455;font-size:13px;font-weight:600">1 ta telefon</span>
+            </div>
+            <span style="font-size:14px;line-height:1.5;color:#C4D1CA">Kadastr raqami, sana va o‘tish asosi tahlil uchun kerak — ular o‘zgarmaydi.</span>
+          </div>
+          <div style="grid-area:1 / 1;display:flex;flex-direction:column;gap:10px;opacity:{{ pipe.o3 }};transition:opacity .4s">
+            <span style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">AI modelga yuborilgan matn</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;color:#C4D1CA;white-space:pre-wrap">Mulk egasi: [SHAXS_1]
+Pasport: [PASPORT_1]  JSHSHIR: [JSHSHIR_1]
+Kadastr raqami: 00:00:00:00:00:0000
+O‘tish asosi: Meros guvohnomasi, 20.03.2026</span>
+            <span style="font-size:14px;color:#C4D1CA">Asl fayl va rasm yuborilmaydi — faqat shu matn.</span>
+          </div>
+          <div style="grid-area:1 / 1;display:flex;flex-direction:column;gap:10px;opacity:{{ pipe.o4 }};transition:opacity .4s">
+            <span style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Javob serverda tiklandi</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.7;color:#C4D1CA;white-space:pre-wrap">[SHAXS_1]   → Namunova Misol Namunovna
+[PASPORT_1] → AA0000000</span>
+            <span style="font-size:14px;line-height:1.5;color:#C4D1CA">Token xaritasi faqat shu so‘rov davomida xotirada turadi, keyin o‘chadi.</span>
+          </div>
+          <div style="grid-area:1 / 1;display:flex;flex-direction:column;gap:12px;opacity:{{ pipe.o5 }};transition:opacity .4s">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+              <span style="display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:#331A16;border:1px solid #5A2A22;color:#FF9B8A;font-size:12px;font-weight:700"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"></path><path d="M12 8v5M12 16h.01"></path></svg>Yuqori xavf</span>
+              <span style="display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:6px;background:#13221B;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:12px">Qonun 50-m.</span>
+            </div>
+            <span style="font-size:16px;font-weight:700">Mulk 8 oy oldin meros orqali o‘tgan</span>
+            <span style="font-size:14px;line-height:1.5;color:#C4D1CA">Ega: Namunova Misol Namunovna. Meros ishi raqami va barcha merosxo‘rlar ro‘yxatini so‘rang.</span>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:8px">
+        <sc-for list="{{ pipeSteps }}" as="s" hint-placeholder-count="6">
+          <button onClick="{{ s.go }}" aria-current="{{ s.current }}" style="position:relative;overflow:hidden;display:flex;gap:16px;align-items:flex-start;width:100%;padding:16px;border-radius:14px;border:1px solid {{ s.border }};background:{{ s.bg }};color:#EEF3F0;text-align:left;cursor:pointer;transition:background .3s,border-color .3s">
+            <span style="flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:{{ s.numBg }};color:{{ s.numC }};font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;transition:background .3s,color .3s">{{ s.num }}</span>
+            <span style="display:flex;flex-direction:column;gap:4px"><span style="font-size:16px;font-weight:700;color:{{ s.titleC }}">{{ s.title }}</span><span style="font-size:14px;line-height:1.45;color:#A3B3AB">{{ s.desc }}</span></span>
+            <span style="position:absolute;left:0;bottom:0;height:2px;width:{{ s.bar }};background:#5FE3A1;transition:{{ s.barTr }}"></span>
+          </button>
+        </sc-for>
+        <button onClick="{{ togglePlay }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;margin-top:8px;border-radius:10px;border:1px solid #2C4338;background:transparent;color:#EEF3F0;font-size:14px;font-weight:600;cursor:pointer" style-hover="background:#101C17">{{ playLabel }}</button>
+      </div>
+    </div>
+    <div id="maxfiylik" style="display:flex;flex-direction:column;gap:20px;padding-top:40px;scroll-margin-top:96px">
+      <h3 style="margin:0;font-size:clamp(26px,2.6vw,36px);line-height:1.1;font-weight:800;letter-spacing:-0.025em">Shaxsiy ma’lumotlar qanday himoyalanadi</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px">
+        <div data-reveal="" data-delay="0" style="display:flex;flex-direction:column;gap:10px;padding:24px;border-radius:16px;background:#101C17;border:1px solid #22352C">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"></path><path d="M10 13l4 4M14 13l-4 4"></path></svg>
+          <span style="font-size:17px;font-weight:700">Fayl diskka yozilmaydi</span>
+          <span style="font-size:15px;line-height:1.5;color:#A3B3AB">Hujjat server xotirasida o‘qiladi va javob berilgach o‘chadi.</span>
+        </div>
+        <div data-reveal="" data-delay="100" style="display:flex;flex-direction:column;gap:10px;padding:24px;border-radius:16px;background:#101C17;border:1px solid #22352C">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3"></path><path d="M8 12h8"></path></svg>
+          <span style="font-size:17px;font-weight:700">OCR o‘z serverimizda</span>
+          <span style="font-size:15px;line-height:1.5;color:#A3B3AB">Bosma matn serverning o‘zida o‘qiladi. Qo‘lyozma uchun lokal HTR model ulansa, rasm ham serverdan chiqmaydi.</span>
+        </div>
+        <div data-reveal="" data-delay="200" style="display:flex;flex-direction:column;gap:10px;padding:24px;border-radius:16px;background:#101C17;border:1px solid #22352C">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M7 12h10"></path></svg>
+          <span style="font-size:17px;font-weight:700">AI faqat tokenlarni ko‘radi</span>
+          <span style="font-size:15px;line-height:1.5;color:#A3B3AB">Ism, pasport, JSHSHIR, telefon, e-pochta va manzil yuborishdan oldin [SHAXS_1] kabi tokenga almashtiriladi.</span>
+        </div>
+        <div data-reveal="" data-delay="300" style="display:flex;flex-direction:column;gap:10px;padding:24px;border-radius:16px;background:#101C17;border:1px solid #22352C">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></svg>
+          <span style="font-size:17px;font-weight:700">Tiklash faqat javobda</span>
+          <span style="font-size:15px;line-height:1.5;color:#A3B3AB">Token xaritasi bitta so‘rov davomida xotirada turadi va saqlanmaydi.</span>
+        </div>
+      </div>
+      <p style="margin:0;max-width:760px;font-size:14px;line-height:1.55;color:#A3B3AB">Lokal HTR model ulanmagan bo‘lsa, qo‘lyozma rasmi faqat sizning aniq roziligingiz bilan tashqi AI modeliga yuboriladi. Niqoblash qoidalarga asoslanadi va noodatiy yozilgan ma’lumotni aniqlamasligi mumkin — tahlilga kerak bo‘lmagan hujjatlarni yuklamang.</p>
+    </div>
+  </section>
+
+  <section id="modullar" data-screen-label="Modullar" style="max-width:1280px;margin:0 auto;padding:120px 32px 56px;display:flex;flex-direction:column;gap:48px">
+    <div data-reveal="" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-end">
+      <h2 style="margin:0;font-size:clamp(34px,3.8vw,56px);line-height:1.05;font-weight:800;letter-spacing:-0.035em;max-width:720px;text-wrap:balance">Uch modul. Har biri o‘z foydalanuvchisi uchun.</h2>
+      <p style="margin:0;max-width:400px;font-size:17px;line-height:1.55;color:#A3B3AB;text-wrap:pretty">Fuqaro tayyorlanadi, xaridor tekshiradi, notarius norma o‘zgarishlarini kuzatadi.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px">
+      <div data-reveal="" data-delay="0">
+        <article style="height:100%;display:flex;flex-direction:column;gap:24px;padding:28px;border-radius:20px;background:#101C17;border:1px solid #22352C;transition:border-color .3s,transform .3s" style-hover="border-color:#3E6B55;transform:translateY(-4px)">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="width:48px;height:48px;border-radius:12px;background:#12301F;color:#5FE3A1;display:grid;place-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"></rect><path d="M9 3h6v3H9zM9 11h6M9 15h4"></path></svg></span><span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#A3B3AB">01</span></div>
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Fuqaro uchun</span><h3 style="margin:0;font-size:26px;font-weight:800;letter-spacing:-0.02em">Tayyorgarlik</h3><p style="margin:0;font-size:16px;line-height:1.55;color:#A3B3AB">Savol-javob orqali vaziyatingiz aniqlanadi va notariusga nima olib borish kerakligi ma’lum bo‘ladi.</p></div>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px">
+            <li style="display:flex;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M5 12l5 5 9-10"></path></svg>Shaxsiy hujjatlar ro‘yxati</li>
+            <li style="display:flex;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M5 12l5 5 9-10"></path></svg>To‘g‘ri notarius va muddatlar</li>
+            <li style="display:flex;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M5 12l5 5 9-10"></path></svg>Ariza va hujjatlarni band bo‘yicha tekshirish, qo‘lyozma ham</li>
+          </ul>
+          <a href="LegalCheckMiniApp.dc.html" style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:15px;font-weight:700;text-decoration:none">Telegramda boshlash<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </article>
+      </div>
+      <div data-reveal="" data-delay="120">
+        <article style="height:100%;display:flex;flex-direction:column;gap:24px;padding:28px;border-radius:20px;background:#101C17;border:1px solid #22352C;transition:border-color .3s,transform .3s" style-hover="border-color:#3E6B55;transform:translateY(-4px)">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="width:48px;height:48px;border-radius:12px;background:#12301F;color:#5FE3A1;display:grid;place-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M12 8v5M12 16h.01"></path></svg></span><span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#A3B3AB">02</span></div>
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Xaridor, rieltor, bank</span><h3 style="margin:0;font-size:26px;font-weight:800;letter-spacing:-0.02em">Bitim xavfi</h3><p style="margin:0;font-size:16px;line-height:1.55;color:#A3B3AB">Mulk hujjatlari yuklanadi, tizim mulk tarixini tiklaydi va qizil bayroqlarni ko‘rsatadi.</p></div>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px">
+            <li style="display:flex;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M5 12l5 5 9-10"></path></svg>Egalar va o‘tish asoslari vaqt chizig‘i</li>
+            <li style="display:flex;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M5 12l5 5 9-10"></path></svg>Xavf darajasi: yuqori, o‘rta, past</li>
+            <li style="display:flex;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M5 12l5 5 9-10"></path></svg>Sotuvchidan nimani talab qilish kerakligi</li>
+          </ul>
+          <a href="LegalCheckKabinet.dc.html" style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:15px;font-weight:700;text-decoration:none">Hujjat yuklash<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </article>
+      </div>
+      <div data-reveal="" data-delay="240">
+        <article style="height:100%;display:flex;flex-direction:column;gap:24px;padding:28px;border-radius:20px;background:#101C17;border:1px solid #22352C;transition:border-color .3s,transform .3s" style-hover="border-color:#3E6B55;transform:translateY(-4px)">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="width:48px;height:48px;border-radius:12px;background:#12301F;color:#5FE3A1;display:grid;place-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 9h8M8 12h5"></path></svg></span><span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#A3B3AB">03</span></div>
+          <div style="display:flex;flex-direction:column;gap:8px"><span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Notarius uchun</span><h3 style="margin:0;font-size:26px;font-weight:800;letter-spacing:-0.02em">Notarius kabineti</h3><p style="margin:0;font-size:16px;line-height:1.55;color:#A3B3AB">Norma o‘zgarishlari lentasi va nostandart holatlarga iqtibosli javob.</p></div>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px">
+            <li style="display:flex;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M5 12l5 5 9-10"></path></svg>Eski va yangi tahrir farqi</li>
+            <li style="display:flex;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M5 12l5 5 9-10"></path></svg>Har bir javob modda yoki band bilan</li>
+            <li style="display:flex;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5FE3A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M5 12l5 5 9-10"></path></svg>Amaliyot manbadan alohida belgilanadi</li>
+          </ul>
+          <a href="LegalCheckKabinet.dc.html?screen=b3" style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:15px;font-weight:700;text-decoration:none">Kabinetni ochish<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="jarayon" ref="{{ procRef }}" data-screen-label="Qanday ishlaydi" style="max-width:1280px;margin:0 auto;padding:80px 32px 64px;display:flex;flex-wrap:wrap;gap:64px">
+    <div style="flex:1 1 360px;min-width:0">
+      <div style="position:sticky;top:120px;display:flex;flex-direction:column;gap:20px">
+        <span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Tayyorgarlik</span>
+        <h2 style="margin:0;font-size:clamp(34px,3.8vw,56px);line-height:1.05;font-weight:800;letter-spacing:-0.035em;text-wrap:balance">Bir ekranda — bitta savol</h2>
+        <p style="margin:0;max-width:440px;font-size:17px;line-height:1.55;color:#A3B3AB;text-wrap:pretty">Qonun matnini o‘qish shart emas. Tizim kerakli savollarni beradi va javobingizga qarab natijani tuzadi.</p>
+        <a href="LegalCheckMiniApp.dc.html" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:15px;font-weight:700;text-decoration:none">Meros misolida sinab ko‘rish<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </div>
+    </div>
+    <div style="flex:1 1 520px;min-width:0;position:relative;display:flex;flex-direction:column">
+      <div style="position:absolute;left:23px;top:24px;bottom:96px;width:2px;background:#22352C"><div ref="{{ fillRef }}" style="width:100%;height:0;background:#5FE3A1"></div></div>
+      <div style="position:relative;display:flex;gap:28px;padding:0 0 80px">
+        <span style="flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:{{ st.s0.bg }};color:{{ st.s0.c }};border:2px solid {{ st.s0.b }};font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;transition:all .4s">01</span>
+        <div style="display:flex;flex-direction:column;gap:10px;padding-top:8px"><h3 style="margin:0;font-size:24px;font-weight:700;color:{{ st.s0.t }};transition:color .4s">Vaziyatni tanlang</h3><p style="margin:0;font-size:17px;line-height:1.55;color:#A3B3AB">Meros, uy-joy oldi-sotdisi, avtomobil, ishonchnoma yoki vasiyatnoma.</p></div>
+      </div>
+      <div style="position:relative;display:flex;gap:28px;padding:0 0 80px">
+        <span style="flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:{{ st.s1.bg }};color:{{ st.s1.c }};border:2px solid {{ st.s1.b }};font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;transition:all .4s">02</span>
+        <div style="display:flex;flex-direction:column;gap:10px;padding-top:8px"><h3 style="margin:0;font-size:24px;font-weight:700;color:{{ st.s1.t }};transition:color .4s">Savollarga javob bering</h3><p style="margin:0;font-size:17px;line-height:1.55;color:#A3B3AB">Vafot sanasi, oxirgi yashash joyi, merosxo‘rlar, vasiyatnoma, meros tarkibi — har biri alohida ekranda.</p></div>
+      </div>
+      <div style="position:relative;display:flex;gap:28px;padding:0 0 80px">
+        <span style="flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:{{ st.s2.bg }};color:{{ st.s2.c }};border:2px solid {{ st.s2.b }};font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;transition:all .4s">03</span>
+        <div style="display:flex;flex-direction:column;gap:10px;padding-top:8px"><h3 style="margin:0;font-size:24px;font-weight:700;color:{{ st.s2.t }};transition:color .4s">Natijani oling</h3><p style="margin:0;font-size:17px;line-height:1.55;color:#A3B3AB">Muddat hisoblagichi, to‘g‘ri notarius, belgilanadigan hujjatlar ro‘yxati va ogohlantirishlar.</p></div>
+      </div>
+      <div style="position:relative;display:flex;gap:28px;padding:0 0 24px">
+        <span style="flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:{{ st.s3.bg }};color:{{ st.s3.c }};border:2px solid {{ st.s3.b }};font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;transition:all .4s">04</span>
+        <div style="display:flex;flex-direction:column;gap:10px;padding-top:8px"><h3 style="margin:0;font-size:24px;font-weight:700;color:{{ st.s3.t }};transition:color .4s">Notariusga tayyor boring</h3><p style="margin:0;font-size:17px;line-height:1.55;color:#A3B3AB">Ro‘yxatni belgilab boring. Yakuniy qarorni notarius yoki yurist bilan tekshiring.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="notarius" data-screen-label="Notariuslar uchun" style="max-width:1280px;margin:0 auto;padding:64px 32px 120px;display:flex;flex-wrap:wrap;gap:56px;align-items:center">
+    <div data-reveal="" style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:20px">
+      <span style="font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#8FF0BF">Notariuslar uchun</span>
+      <h2 style="margin:0;font-size:clamp(34px,3.8vw,56px);line-height:1.05;font-weight:800;letter-spacing:-0.035em;text-wrap:balance">Norma o‘zgardi — farqini bir qarashda ko‘ring</h2>
+      <p style="margin:0;max-width:480px;font-size:17px;line-height:1.55;color:#A3B3AB;text-wrap:pretty">Qonun, yo‘riqnoma va reglamentdagi tahrirlar eski va yangi matn bilan. Nostandart holat bo‘yicha savolga iqtibosli javob.</p>
+      <a href="LegalCheckKabinet.dc.html?screen=b3" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:15px;font-weight:700;text-decoration:none">Kabinetni ochish<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+    <div data-reveal="" data-delay="120" style="flex:1 1 480px;min-width:0">
+      <article style="padding:24px;border-radius:20px;background:#101C17;border:1px solid #22352C;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;height:26px;padding:0 8px;border-radius:6px;background:#13221B;border:1px solid #2A4236;color:#BDEBD3;font-family:'IBM Plex Mono',monospace;font-size:13px">Yo‘riqnoma 22-band</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#A3B3AB">Namuna o‘zgarish</span>
+        </div>
+        <h3 style="margin:0;font-size:17px;font-weight:700">Notarial harakatlar uchun to‘lovni tasdiqlash</h3>
+        <div style="display:flex;flex-direction:column;border-radius:12px;overflow:hidden;border:1px solid #22352C">
+          <div style="display:flex;gap:10px;padding:14px 16px;background:#2A1512;color:#FFC9C0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="flex:none;margin-top:3px"><path d="M5 12h14"></path></svg><span style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase">Eski tahrir</span><span style="font-size:15px;line-height:1.5;text-decoration:line-through;text-decoration-color:#FF9B8A">To‘lov kvitansiyasi notariusga taqdim etiladi.</span></span></div>
+          <div style="display:flex;gap:10px;padding:14px 16px;background:#0F2A1E;color:#C2F5DB;border-top:1px solid #22352C"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="flex:none;margin-top:3px"><path d="M5 12h14M12 5v14"></path></svg><span style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase">Yangi tahrir</span><span style="font-size:15px;line-height:1.5">To‘lovdan keyin telefonga SMS-kod keladi; harakat kod notariusga aytilgach bajariladi.</span></span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section data-screen-label="Tamoyillar" style="max-width:1280px;margin:0 auto;padding:0 32px 120px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1px;background:#22352C;border:1px solid #22352C;border-radius:20px;overflow:hidden">
+      <div data-reveal="" data-delay="0" style="background:#0A1410;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="margin:0;font-size:22px;font-weight:700">Manbasiz da’vo yo‘q</h3><p style="margin:0;font-size:16px;line-height:1.55;color:#A3B3AB">Har bir huquqiy tasdiq yonida modda yoki band. Manbada topilmagan amaliyot alohida belgilanadi.</p></div>
+      <div data-reveal="" data-delay="100" style="background:#0A1410;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="margin:0;font-size:22px;font-weight:700">Xavf — so‘z va ikon bilan</h3><p style="margin:0;font-size:16px;line-height:1.55;color:#A3B3AB">Daraja faqat rang bilan emas: har bir bayroqda ikon va «Yuqori», «O‘rta», «Past» yozuvi bor.</p></div>
+      <div data-reveal="" data-delay="200" style="background:#0A1410;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="margin:0;font-size:22px;font-weight:700">Yakuniy so‘z — mutaxassisda</h3><p style="margin:0;font-size:16px;line-height:1.55;color:#A3B3AB">Bu sun’iy intellekt tahlili, yuridik maslahat emas. Yakuniy qarorni notarius yoki yurist bilan tekshiring.</p></div>
+    </div>
+  </section>
+
+  <section style="max-width:1280px;margin:0 auto;padding:0 32px 96px">
+    <div data-reveal="" style="border-radius:28px;background:#5FE3A1;color:#04130B;padding:clamp(32px,6vw,80px);display:flex;flex-wrap:wrap;gap:32px;align-items:flex-end;justify-content:space-between">
+      <h2 style="margin:0;font-size:clamp(34px,4.6vw,68px);line-height:1;font-weight:800;letter-spacing:-0.04em;max-width:760px;text-wrap:balance">Keyingi notarial ishingizga tayyor boring.</h2>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="LegalCheckMiniApp.dc.html" style="display:inline-flex;align-items:center;height:56px;padding:0 24px;border-radius:14px;background:#04130B;color:#EEF3F0;font-size:16px;font-weight:700;text-decoration:none" style-hover="background:#12301F;color:#EEF3F0">Telegramda ochish</a>
+        <a href="LegalCheckKabinet.dc.html" style="display:inline-flex;align-items:center;height:56px;padding:0 24px;border-radius:14px;border:1.5px solid #04130B;color:#04130B;font-size:16px;font-weight:700;text-decoration:none" style-hover="background:#4FD392;color:#04130B">Bitim xavfini tekshirish</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid #1A2A23">
+    <div style="max-width:1280px;margin:0 auto;padding:40px 32px 24px;display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-start">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="display:flex;align-items:center;gap:10px"><span style="width:28px;height:28px;border-radius:7px;background:#5FE3A1;color:#04130B;display:grid;place-items:center;font-weight:800;font-size:15px"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span style="font-weight:800;font-size:17px">LegalCheck AI</span></span>
+      </div>
+      <p style="margin:0;max-width:520px;font-size:14px;line-height:1.55;color:#A3B3AB">Bu sun’iy intellekt tahlili, yuridik maslahat emas. Yakuniy qarorni notarius yoki yurist bilan tekshiring. Tahlil LexUZ’dagi rasmiy matnlarga tayanadi.</p>
+      <nav style="display:flex;flex-direction:column;gap:2px">
+        <a href="LegalCheckMiniApp.dc.html" style="display:inline-flex;align-items:center;min-height:36px;color:#C4D1CA;font-size:14px;text-decoration:none" style-hover="color:#EEF3F0">Telegram Mini App</a>
+        <a href="LegalCheckKabinet.dc.html" style="display:inline-flex;align-items:center;min-height:36px;color:#C4D1CA;font-size:14px;text-decoration:none" style-hover="color:#EEF3F0">Bitim xavfi</a>
+        <a href="LegalCheckKabinet.dc.html?screen=b3" style="display:inline-flex;align-items:center;min-height:36px;color:#C4D1CA;font-size:14px;text-decoration:none" style-hover="color:#EEF3F0">Notarius kabineti</a>
+      </nav>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;padding:0 32px 32px;font-size:13px;color:#8A9B93">© 2026 LegalCheck AI</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { phase: 0, step: 0, pp: 0, playing: true, inView: false };
+    this.tizimRef = React.createRef();
+    this.rootRef = React.createRef();
+    this.marqueeRef = React.createRef();
+    this.procRef = React.createRef();
+    this.fillRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const root = this.rootRef.current;
+    if (!root) return;
+    const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ease = 'cubic-bezier(.2,.7,.1,1)';
+    const tz = this.tizimRef.current;
+    if (tz) {
+      this.tzIo = new IntersectionObserver(([e]) => this.setState({ inView: e.isIntersecting }), { threshold: 0.25 });
+      this.tzIo.observe(tz);
+    }
+    this.ppTimer = setInterval(() => {
+      if (this.state.playing && this.state.inView) this.setState((s) => ({ pp: (s.pp + 1) % 6 }));
+    }, 2800);
+    if (reduce) {
+      this.setState({ phase: 8, playing: false });
+    } else {
+      root.querySelectorAll('[data-hero]').forEach((el) => {
+        const i = +el.dataset.hero;
+        const line = i >= 1 && i <= 4;
+        el.animate(
+          line ? [{ transform: 'translateY(105%)' }, { transform: 'none' }] : [{ opacity: 0, transform: 'translateY(18px)' }, { opacity: 1, transform: 'none' }],
+          { duration: line ? 1000 : 800, delay: 100 + i * 90, easing: ease, fill: 'backwards' }
+        );
+      });
+      this.io = new IntersectionObserver((entries) => entries.forEach((e) => {
+        if (e.isIntersecting && e.target._rv) { e.target._rv.play(); this.io.unobserve(e.target); }
+      }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      root.querySelectorAll('[data-reveal]').forEach((el) => {
+        if (el.getBoundingClientRect().top < innerHeight * 0.9) return;
+        const a = el.animate([{ opacity: 0, transform: 'translateY(36px)' }, { opacity: 1, transform: 'none' }], { duration: 900, delay: +(el.dataset.delay || 0), easing: ease, fill: 'backwards' });
+        a.pause();
+        el._rv = a;
+        this.io.observe(el);
+      });
+      const m = this.marqueeRef.current;
+      if (m) this.mq = m.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-50%)' }], { duration: 55000, iterations: Infinity });
+      this.timer = setInterval(() => this.setState((s) => ({ phase: (s.phase + 1) % 10 })), 1300);
+    }
+    this.onScroll = () => {
+      if (this.raf) return;
+      this.raf = requestAnimationFrame(() => { this.raf = 0; this.updateProc(); });
+    };
+    addEventListener('scroll', this.onScroll, { passive: true });
+    addEventListener('resize', this.onScroll);
+    this.updateProc();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    clearInterval(this.ppTimer);
+    if (this.tzIo) this.tzIo.disconnect();
+    removeEventListener('scroll', this.onScroll);
+    removeEventListener('resize', this.onScroll);
+    if (this.io) this.io.disconnect();
+    if (this.mq) this.mq.cancel();
+    cancelAnimationFrame(this.raf);
+  }
+
+  updateProc() {
+    const sec = this.procRef.current, fill = this.fillRef.current;
+    if (!sec || !fill) return;
+    const r = sec.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, (innerHeight * 0.6 - r.top - 80) / Math.max(1, r.height - 260)));
+    fill.style.height = (p * 100).toFixed(2) + '%';
+    const step = Math.min(3, Math.floor(p * 4.4));
+    if (step !== this.state.step) this.setState({ step });
+  }
+
+  pipe() {
+    const pp = this.state.pp;
+    const node = (i) => ({ bg: pp === i ? '#12301F' : '#0D1813', b: pp === i ? '#5FE3A1' : pp > i ? '#2F6B4C' : '#22352C', c: pp >= i ? '#EEF3F0' : '#A3B3AB' });
+    const o = {};
+    for (let i = 0; i < 6; i++) { o['n' + i] = node(i); o['o' + i] = pp === i ? 1 : 0; }
+    return {
+      ...o,
+      outL: pp >= 3 ? '100%' : '0%', outO: pp === 3 ? 1 : 0, outTr: pp === 3 ? 'left 1.8s ease-in-out, opacity .3s' : 'opacity .3s', outC: pp === 3 ? '#8FF0BF' : '#8A9B93',
+      retL: pp >= 4 ? '0%' : '100%', retO: pp === 4 ? 1 : 0, retTr: pp === 4 ? 'left 1.8s ease-in-out, opacity .3s' : 'opacity .3s', retC: pp === 4 ? '#8FF0BF' : '#8A9B93',
+      scanTop: pp >= 1 ? 'calc(100% + 64px)' : '0%', scanO: pp === 1 ? 1 : 0, scanTr: pp === 1 ? 'top 2.2s linear, opacity .3s' : 'opacity .3s',
+      ocr: pp >= 1 ? 'inset 0 0 0 1.5px #1F9E63' : 'inset 0 0 0 1.5px transparent',
+      piiBg: pp === 2 ? '#FFE3A3' : pp === 3 ? '#D5F5E3' : 'transparent',
+      valO: pp === 3 ? 0 : 1, tokO: pp === 3 ? 1 : 0, tagO: pp === 2 ? 1 : 0, restO: pp >= 4 ? 1 : 0,
+    };
+  }
+
+  pipeSteps() {
+    const { pp, playing } = this.state;
+    const steps = [
+      ['Yuklash', 'Hujjat server xotirasiga qabul qilinadi, diskka yozilmaydi.'],
+      ['OCR / HTR', 'Bosma matn — OCR, qo‘lyozma — HTR model. O‘zbek (lotin, kirill), rus.'],
+      ['PII niqoblash', 'Ism, pasport, JSHSHIR, telefon va manzil aniqlanadi.'],
+      ['AI tahlil', 'Modelga faqat tokenlangan matn ketadi.'],
+      ['Tiklash', 'Tokenlar serverda asl qiymatga qaytariladi.'],
+      ['Natija', 'Qizil bayroqlar manba bilan; xotira tozalanadi.'],
+    ];
+    return steps.map(([title, desc], i) => {
+      const on = pp === i, done = pp > i;
+      return {
+        title, desc, num: String(i + 1).padStart(2, '0'), current: on ? 'step' : undefined,
+        bg: on ? '#12301F' : 'transparent', border: on ? '#2F6B4C' : '#1A2A23',
+        numBg: on || done ? '#5FE3A1' : '#15241D', numC: on || done ? '#04130B' : '#A3B3AB', titleC: on || done ? '#EEF3F0' : '#C4D1CA',
+        bar: on && playing ? '100%' : '0%', barTr: on && playing ? 'width 2.8s linear' : 'none',
+        go: () => this.setState({ pp: i, playing: false }),
+      };
+    });
+  }
+
+  renderVals() {
+    const ph = this.state.phase;
+    const v = (n) => ({ o: ph >= n ? 1 : 0, t: ph >= n ? 'none' : 'translateY(10px)' });
+    const status = ph === 0 ? 'Hujjatlar kutilmoqda' : ph <= 2 ? 'Hujjatlar o‘qilmoqda' : ph <= 4 ? 'Mulk tarixi tiklanmoqda' : ph <= 6 ? 'Xavflar tekshirilmoqda' : 'Tahlil tayyor';
+    const step = (i) => {
+      const on = i <= this.state.step;
+      return { bg: on ? '#5FE3A1' : '#0A1410', c: on ? '#04130B' : '#A3B3AB', b: on ? '#5FE3A1' : '#2C4338', t: on ? '#EEF3F0' : '#8A9B93' };
+    };
+    return {
+      rootRef: this.rootRef, marqueeRef: this.marqueeRef, procRef: this.procRef, fillRef: this.fillRef,
+      p: {
+        file1: v(1), file2: v(2), tl1: v(3), tl2: v(3), tl3: v(4), f1: v(5), f2: v(6), f3: v(7),
+        bar: ph === 0 ? '0%' : ph === 1 ? '22%' : ph === 2 ? '58%' : '100%',
+        status, dot: ph >= 7 ? '#5FE3A1' : '#F3C455',
+      },
+      st: { s0: step(0), s1: step(1), s2: step(2), s3: step(3) },
+      tizimRef: this.tizimRef,
+      pipe: this.pipe(),
+      pipeSteps: this.pipeSteps(),
+      togglePlay: () => this.setState((s) => ({ playing: !s.playing })),
+      playLabel: this.state.playing ? 'Pauza' : 'Davom ettirish',
+    };
+  }
+}
+</script>
+</body>
+</html>
